@@ -7,14 +7,30 @@ const productSchema = new mongoose.Schema(
             required: true,
             trim: true,
         },
+        colors:
+            [{ type: String }],
         category:
             [{ type: String }],
+        images:
+            [{ type: String }],
+        brand: {
+            type: String,
+            required: true
+        },
+        stock: {
+            type: Number,
+            default: 1,
+        },
         price: {
             type: Number,
             default: 0,
         },
-        images: 
-            [{ type: String }],
+        summary: {
+            type: String
+        },
+        description: {
+            type: String
+        }
     },
     {
         timestamps: true,
