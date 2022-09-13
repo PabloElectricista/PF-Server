@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import { model, Schema } from "mongoose";
 
-const productSchema = new mongoose.Schema(
+const productSchema = new Schema(
     {
         user: {
             type: Schema.Types.ObjectId,
@@ -42,4 +42,4 @@ const productSchema = new mongoose.Schema(
     }
 );
 
-export default mongoose.model("Product", productSchema);
+export default model("Product", productSchema);
