@@ -1,7 +1,6 @@
 import Product from "../models/Product.js";
 
 export const createProduct = async (req, res) => {
-  const { name, category, price, images } = req.body;
 
   try {
     const newProduct = new Product(req.body);
