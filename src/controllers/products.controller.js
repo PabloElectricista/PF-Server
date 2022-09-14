@@ -21,8 +21,10 @@ export const getProductById = async (req, res) => {
 };
 
 export const getProducts = async (req, res) => {
-  const products = await Product.find();
-  return res.json(products);
+  const start = parseInt(req.query.start) * 9
+  var count = await Product.estimatedDocumentCount()
+  const products = await Product.find().skip(start).limit(9);
+  return res.json({ products, count });
 };
 
 export const updateProductById = async (req, res) => {
