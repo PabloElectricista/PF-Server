@@ -21,6 +21,18 @@ const productSchema = new mongoose.Schema(
         ref: "Role",
       },
     ],
+    isAdDmin: {
+      type: Boolean,
+      default: false
+    },
+    isActive: {
+      type: Boolean,
+      default: true
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false
+    }
   },
   {
     timestamps: true,
