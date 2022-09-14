@@ -1,0 +1,60 @@
+[
+
+    {
+        "color":["Green"],
+        "price":100,
+        "name":"RAM",
+        "category":["replacement"],
+        "images":["https://s3-sa-east-1.amazonaws.com/saasargentina/TNsYjD2GXXnaxHp96erf/imagen"],
+        "brand": "Kevingstone"
+    },
+    {
+        "color":["Gray"],
+        "price":200,
+        "name":"Fuente",
+        "category":["replacement"],
+        "images":["https://http2.mlstatic.com/D_NQ_NP_706798-MLA44653915064_012021-O.webp"],
+        "brand": "Truchex"
+    },
+    {
+        "color":["Black"],
+        "price":50,
+        "name":"Monitor",
+        "category":["component"],
+        "images":["https://www.lg.com/ar/images/monitores/md05985257/gallery/medium01.jpg"],
+        "brand": "LG"
+    },
+    {
+        "color":["Gray"],
+        "price":300,
+        "name":"CPU",
+        "category":["component"],
+        "images":["https://signal.avg.com/hubfs/Blog_Content/Avg/Signal/AVG%20Signal%20Images/How%20to%20Stress%20Test%20Your%20CPU/How_to_stress_test_your_CPU-Hero.jpg"],
+        "brand": "Asus"
+    },
+    {
+        "color":["Orange","Black"],
+        "price":100,
+        "name":"Web Cam",
+        "category":["component"],
+        "images":["https://http2.mlstatic.com/D_NQ_NP_622741-MLA50623185098_072022-V.jpg"],
+        "brand": "Souno"
+    },
+    {
+        "color":["RGB"],
+        "price":90,
+        "name":"Keyboard",
+        "category":["Peripheral"],
+        "images":["https://thermaltake.azureedge.net/pub/media/catalog/product/cache/0b6cd258d732892ac0f7248ef9ed4204/l/2/l20gt01_1.jpg"],
+        "brand": "Silver"
+    },
+    {
+        "color":["Pink"],
+        "price":105,
+        "name":"Keyboard",
+        "category":["Peripheral"],
+        "images":["https://s3-ap-southeast-2.amazonaws.com/wc-prod-pim/JPEG_1000x1000/L920010579_logitech_pop_keys_wireless_keyboard_heartbreaker_rose.jpg"],
+        "brand":"Logi"
+    }
+    
+]
