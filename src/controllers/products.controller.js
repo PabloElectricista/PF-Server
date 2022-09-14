@@ -21,9 +21,21 @@ export const getProductById = async (req, res) => {
 };
 
 export const getProducts = async (req, res) => {
-  const start = parseInt(req.query.start) * 9
+  const {start, ...conditionByQuery}=req.query;
+  const condition={}; 
+  for(const prop in conditionByQuery){
+    if(prop=="price"){
+        let [min,max]=conditionByQuery[prop].split('/') //price?min/max desde el front
+        condition[prop]={
+            $lte:parseInt(max),
+            $gte:parseInt(min)
+        }
+    }else
+        condition[prop]=new RegExp(conditionByQuery[prop],"i")
+  }
+  const index = parseInt(req.query.start) * 9
   var count = await Product.estimatedDocumentCount()
-  const products = await Product.find().skip(start).limit(9);
+  const products = await Product.find(condition).skip(index).limit(9);
   return res.json({ products, count });
 };
 
