@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
-
+import initialfunction from "./libs/initialfunction.js"
 // Routes
 import indexRoutes from "./routes/index.routes.js";
 import productRoutes from "./routes/products.routes.js";
@@ -10,7 +10,7 @@ import usersRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
-
+initialfunction()
 // Settings
 app.set("port", process.env.PORT || 4000);
 app.set("json spaces", 4);
