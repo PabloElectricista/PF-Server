@@ -1,4 +1,4 @@
-[
+const data = [
     {
      "name": "Pass",
      "colors": "Khaki",
@@ -1100,3 +1100,5 @@
      "description": "est congue elementum in hac habitasse platea dictumst morbi vestibulum"
     }
    ]
+
+export default data
