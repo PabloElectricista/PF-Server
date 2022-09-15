@@ -20,23 +20,44 @@ export const getProductById = async (req, res) => {
   res.status(200).json(product);
 };
 
-export const getProducts = async (req, res) => {
-  const {start, ...conditionByQuery}=req.query;
-  const condition={}; 
-  for(const prop in conditionByQuery){
+function combinedFilters(conditions){
+  const conditionSearch={}
+  for(const prop in conditions){
     if(prop=="price"){
-        let [min,max]=conditionByQuery[prop].split('/') //price?min/max desde el front
-        condition[prop]={
+        let [min,max]=conditions[prop].split('/') //price?min/max desde el front
+        conditionSearch[prop]={
             $lte:parseInt(max),
             $gte:parseInt(min)
         }
     }else
-        condition[prop]=new RegExp(conditionByQuery[prop],"i")
+    conditionSearch[prop]=new RegExp(conditions[prop],"i")
   }
+  //console.log(conditionSearch)
+  return conditionSearch;
+}
+
+async function valuesAllProps(){
+  const props={colors:[], brand:[], status:[]};
+  const currentProducts=await Product.find();
+  for(const current in props){
+      currentProducts.forEach(p =>props[current]=Array.isArray(p[current])?[...props[current], ...p[current]]:[...props[current],p[current]]
+    );
+    props[current]=props[current].filter((item,index)=>{
+      return props[current].indexOf(item) === index;
+    })
+  }  
+  return props;
+}
+
+export const getProducts = async (req, res) => {
+  const {start, ...conditionByQuery}=req.query;
+
+  const condition=await combinedFilters(conditionByQuery); 
+  await valuesAllProps();
   const index = parseInt(req.query.start) * 9
   var count = await Product.estimatedDocumentCount()
   const products = await Product.find(condition).skip(index).limit(9);
-  return res.json({ products, count });
+  return res.json({ products, count/*, props */});
 };
 
 export const updateProductById = async (req, res) => {
