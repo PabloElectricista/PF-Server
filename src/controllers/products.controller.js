@@ -32,16 +32,29 @@ function combinedFilters(conditions){
     }else
     conditionSearch[prop]=new RegExp(conditions[prop],"i")
   }
-  //console.log(conditionSearch)
   return conditionSearch;
 }
 
 async function valuesAllProps(){
-  const props={colors:[], brand:[], status:[]};
+  const props={colors:[], brand:[],price:[]};
   const currentProducts=await Product.find();
+  let min,max;
   for(const current in props){
-      currentProducts.forEach(p =>props[current]=Array.isArray(p[current])?[...props[current], ...p[current]]:[...props[current],p[current]]
-    );
+    currentProducts.forEach(p =>{
+      if(current=="price"){
+        if(!min&&!max){
+          min=p[current];
+          max=p[current];
+        }else{
+          if(min>p[current]) min=p[current];
+          if(max<p[current]) max=p[current];
+        }
+        props[current]=[min,max]
+      }else {
+        props[current]=Array.isArray(p[current])?[...props[current], ...p[current]]:[...props[current],p[current]]
+      }
+    }
+  );
     props[current]=props[current].filter((item,index)=>{
       return props[current].indexOf(item) === index;
     })
@@ -53,11 +66,11 @@ export const getProducts = async (req, res) => {
   const {start, ...conditionByQuery}=req.query;
 
   const condition=await combinedFilters(conditionByQuery); 
-  await valuesAllProps();
+  const possibleValuesProps= await valuesAllProps();
   const index = parseInt(req.query.start) * 9
   var count = await Product.estimatedDocumentCount()
   const products = await Product.find(condition).skip(index).limit(9);
-  return res.json({ products, count/*, props */});
+  return res.json({ products, count,...possibleValuesProps});
 };
 
 export const updateProductById = async (req, res) => {
