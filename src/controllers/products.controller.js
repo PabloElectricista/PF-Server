@@ -35,7 +35,7 @@ function combinedFilters(conditions){
   return conditionSearch;
 }
 
-async function valuesAllProps(){
+/* async function valuesAllProps(){
   const props={colors:[], brand:[],price:[]};
   const currentProducts=await Product.find();
   let min,max;
@@ -60,17 +60,21 @@ async function valuesAllProps(){
     })
   }  
   return {...props,status:["New","Used"]};
-}
+} */
 
 export const getProducts = async (req, res) => {
-  const {start, ...conditionByQuery}=req.query;
+  const { start, ...conditionByQuery } = req.query;
 
-  const condition=await combinedFilters(conditionByQuery); 
-  const possibleValuesProps= await valuesAllProps();
+  const condition = await combinedFilters(conditionByQuery);
   const index = parseInt(req.query.start) * 9
-  var count = await Product.estimatedDocumentCount()
+  var count = await Product.countDocuments(condition)
   const products = await Product.find(condition).skip(index).limit(9);
-  return res.json({ products, count,...possibleValuesProps});
+  const brand = await Product.find(condition, { select: "brand" }).distinct("brand");
+  const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
+  const result = await Product.find(condition, { select: "price" }).distinct("price")
+  const prices = result.sort((a, b) => a - b);
+  const price = [prices[0], prices[prices.length - 1]];
+  return res.json({ products, count, brand, colors, price });
 };
 
 export const updateProductById = async (req, res) => {
