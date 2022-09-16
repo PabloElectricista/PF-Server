@@ -60,3 +60,16 @@ export const getUserEmail = async (req, res) => {
     console.log(error)
   }
 };
+
+export const putUser = async (req, res) => {
+  try {
+    const { username, email, password, roles } = req.body;
+    await User.updateOne({email: email},
+      {username: username},
+      {password: password}
+      )
+    return res.status(200).send("User updated!")
+  } catch(error) {
+    console.log(error)
+  }
+}
