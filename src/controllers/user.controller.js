@@ -33,11 +33,20 @@ export const createUser = async (req, res) => {
 };
 
 export const getUsers = async (req, res) => {
-  const users = await User.find();
-  return res.json(users);
+  try {
+    const users = await User.find();
+    return res.json(users);
+  } catch(error) {
+    console.log(error)
+  }
 };
 
 export const getUser = async (req, res) => {
-  const user = await User.findById(req.params.userId);
-  return res.json(user);
+  try {
+    const { id } = req.params
+    const user = await User.findById(id);
+    return res.json(user);
+  } catch(error) {
+    console.log(error)
+  }
 };
