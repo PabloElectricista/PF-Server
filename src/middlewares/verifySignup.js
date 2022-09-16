@@ -18,8 +18,6 @@ export const checkExistingUser = async (req, res, next) => {
 };
 
 export const checkExistingRole = (req, res, next) => {
-  req.body.roles.find();
-
   if (!req.body.roles) return res.status(400).json({ message: "No roles" });
 
   for (let i = 0; i < req.body.roles.length; i++) {
