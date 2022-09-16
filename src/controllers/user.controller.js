@@ -33,11 +33,43 @@ export const createUser = async (req, res) => {
 };
 
 export const getUsers = async (req, res) => {
-  const users = await User.find();
-  return res.json(users);
+  try {
+    const users = await User.find();
+    return res.json(users);
+  } catch(error) {
+    console.log(error)
+  }
 };
 
 export const getUser = async (req, res) => {
-  const user = await User.findById(req.params.userId);
-  return res.json(user);
+  try {
+    const { id } = req.params
+    const user = await User.findById(id);
+    return res.json(user);
+  } catch(error) {
+    console.log(error)
+  }
 };
+
+export const getUserEmail = async (req, res) => {
+  try {
+    const { email } = req.params
+    const user = await User.find({email: email})
+    return res.json(user)
+  } catch(error) {
+    console.log(error)
+  }
+};
+
+export const putUser = async (req, res) => {
+  try {
+    const { username, email, password, roles } = req.body;
+    await User.updateOne({email: email},
+      {username: username},
+      {password: password}
+      )
+    return res.status(200).send("User updated!")
+  } catch(error) {
+    console.log(error)
+  }
+}

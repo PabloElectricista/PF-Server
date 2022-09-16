@@ -21,12 +21,25 @@ const productSchema = new mongoose.Schema(
         ref: "Role",
       },
     ],
+    isAdDmin: {
+      type: Boolean,
+      default: false
+    },
+    isActive: {
+      type: Boolean,
+      default: true
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false
+    }
   },
   {
     timestamps: true,
     versionKey: false,
   }
 );
+
 
 productSchema.statics.encryptPassword = async (password) => {
   const salt = await bcrypt.genSalt(10);
