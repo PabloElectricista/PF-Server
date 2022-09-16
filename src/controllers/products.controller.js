@@ -59,7 +59,7 @@ async function valuesAllProps(){
       return props[current].indexOf(item) === index;
     })
   }  
-  return props;
+  return {...props,status:["New","Used"]};
 }
 
 export const getProducts = async (req, res) => {
