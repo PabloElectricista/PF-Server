@@ -50,3 +50,13 @@ export const getUser = async (req, res) => {
     console.log(error)
   }
 };
+
+export const getUserEmail = async (req, res) => {
+  try {
+    const { email } = req.params
+    const user = await User.find({email: email})
+    return res.json(user)
+  } catch(error) {
+    console.log(error)
+  }
+};
