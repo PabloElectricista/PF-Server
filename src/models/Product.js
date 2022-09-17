@@ -34,6 +34,11 @@ const productSchema = new Schema(
         },
         description: {
             type: String
+        },
+        status:{
+            type:String,
+            enum:["New","Used"],
+            default:"New"
         }
     },
     {
