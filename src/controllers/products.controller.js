@@ -63,12 +63,15 @@ function combinedFilters(conditions){
 } */
 
 export const getProducts = async (req, res) => {
-  const { start, ...conditionByQuery } = req.query;
-
+  const { start, order, ...conditionByQuery } = req.query;
+  var field, by;
+  if(order) [field, by] = order.split('/');
   const condition = await combinedFilters(conditionByQuery);
   const index = parseInt(req.query.start) * 9
   var count = await Product.countDocuments(condition)
-  const products = await Product.find(condition).skip(index).limit(9);
+  var products;
+  if (order) products = await Product.find(condition).sort({ [field]: by}).skip(index).limit(9);
+  else products = await Product.find(condition).skip(index).limit(9);
   const brand = await Product.find(condition, { select: "brand" }).distinct("brand");
   const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
   const result = await Product.find(condition, { select: "price" }).distinct("price")
