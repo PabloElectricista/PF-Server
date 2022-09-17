@@ -28,7 +28,11 @@ export const signupHandler = async (req, res) => {
 
     // Create a token
     const token = jwt.sign({ id: savedUser._id }, SECRET, {
+<<<<<<< HEAD
       expiresIn: 604800, // 7 dias
+=======
+      expiresIn: 604800, // 24 hours
+>>>>>>> e6ff100c6a1e01017443291c74a1c547d62ff46c
     });
 
     return res.status(200).json({ token });
