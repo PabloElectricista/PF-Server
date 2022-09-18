@@ -322,7 +322,312 @@ export const products=[
      "summary": "et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non",
      "description": "vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum",
      "status":"Used"
-    }
+    },
+    {
+     "name": "MSI GEFORCE RTX 3060 TI GAMING X 8G LHR",
+     "colors": ["Black", "White"],
+     "category": "Graphics",
+     "images": "https://clonesyperifericos.com/wp-content/uploads/2022/09/1-10-600x600.jpg",
+     "brand": "MSI",
+     "stock": 5,
+     "price": 519,
+     "summary": "Es hora de ponerse los colores del equipo. Sincroniza la iluminación con otros dispositivos compatibles para llevar el espectáculo de luces a otro nivel.",
+     "description": "El trazado de rayos es el santo grial de los gráficos de los videojuegos, simula el comportamiento físico de la luz para ofrecer una representación de calidad cinematográfica en tiempo real incluso en los juegos más exigentes a nivel visual.",
+     "status": "New"
+    },
+    {
+        "name": "Gamer Chair DXRACER FORMULA P09 BLACK",
+        "colors": ["Black", "Red", "White"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/09/1-7-600x600.jpg",
+        "brand": "Dx Racer",
+        "stock": 7,
+        "price": 349,
+        "summary": "Ya sea que esté jugando, trabajando o tomando una siesta, nuestra silla brinda un soporte de ángulo perfecto de 90° a 135° para satisfacer todas sus necesidades.",
+        "description": "Construida con el cuero preferido por los asientos de carreras junto con un diseño de combinación de colores y costuras detalladas, nuestra serie Prince puede combinar perfectamente con el estilo de su configuración y ayudarlo a dominar el mundo de los juegos.",
+        "status": "New"
+       },
+       {
+        "name": "MONITOR SAMSUNG ODYSSEY G4 27 IPS 240HZ",
+        "colors": ["Black"],
+        "category": "Graphics",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-76-600x600.jpg",
+        "brand": "Samsung",
+        "stock": 25,
+        "price": 409,
+        "summary": "Escenas a toda velocidad. La tasa de refresco de 240Hz elimina el retardo para ofrecerte un juego estimulante.",
+        "description": "Una forma realista de desafiar la reaIidad, en la que experimentarás tus juegos como nunca antes. El panel IPS te permite experimentar los colores con nitidez y con un amplio ángulo de visión de 178º, para una mayor claridad desde cualquier punto de vista. Disfruta de más píxeles y una mayor profundidad, para que tus juegos se acerquen más que nunca a la realidad",
+        "status": "New"
+       },
+       {
+        "name": "FUENTE DE PODER CORSAIR FULL MODULAR RM 1000W GOLD",
+        "colors": ["Black"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-75-600x600.jpg",
+        "brand": "Corsair",
+        "stock": 17,
+        "price": 219,
+        "summary": "EFICIENCIA CON CERTIFICACIÓN GOLD CON REGULACIÓN DEL VOLTAJE EXTREMADAMENTE PRECISA PARA OFRECER UN RENDIMIENTO SUPERIOR.",
+        "description": "Las fuentes alimentación RMx Series ofrecen un control del voltaje extremadamente preciso, un funcionamiento silencioso, una eficiencia con certificación Gold y un conjunto de cables totalmente modulares.",
+        "status": "New"
+       },
+       {
+        "name": "BOARD GIGABYTE B660M GAMING X AX DDR4",
+        "colors": ["Black"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-72-600x600.jpg",
+        "brand": "Gigabyte",
+        "stock": 4,
+        "price": 199,
+        "summary": "La entrega de energía más limpia y eficiente a la CPU con un mejor rendimiento térmico garantiza la estabilidad bajo altas frecuencias de CPU y cargas pesadas. DrMOS de 8+1+1 fases*",
+        "description": "Las placas base GIGABYTE B660 están listas para funcionar con los dispositivos PCIe 4.0 que se espera que experimenten el doble de ancho de banda que los dispositivos PCIe 3.0 actuales.",
+        "status": "New"
+       },
+       {
+        "name": "KIT 3 VENTILADORES THERMALTAKE PURE 12 LED ROJO",
+        "colors": ["White"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/3-62-600x600.jpg",
+        "brand": "Thermaltake",
+        "stock": 3,
+        "price": 29,
+        "summary": "El ventilador de 12 LED puro está diseñado para enfriarse en silencio, por lo que el usuario puede mantener su mente centrada en la tarea a mano sin molestarse.",
+        "description": "El ventilador Thermaltake Pure 12 LED viene con un rendimiento confiable y estable y un estilo magnífico y vibrante. Disponible en 120 mm, el ventilador Pure 12 LED ofrece el equilibrio perfecto entre silencio, estilo y eficiencia.",
+        "status": "New"
+       },
+       {
+        "name": "SSD ADATA ULTIMATE SU650 512GB 2.5",
+        "colors": ["Black"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/09/1-1-600x600.jpg",
+        "brand": "Adata",
+        "stock": 9,
+        "price": 19,
+        "summary": "La unidad de estado sólido Ultimate SU650 implementa Flash NAND 3D y un controlador de alta velocidad, ofreciendo capacidades de hasta 960 GB.",
+        "description": "Ofrece un rendimiento de lectura/escritura de hasta 520/450MB/s y mayor fiabilidad que los SSD con NAND 2D. El SU650 cuenta con caché SLC y tecnologías avanzadas de corrección de errores para garantizar un rendimiento e integridad de datos optimizados. Para aquellos que quieren experimentar una mejora clara de su PC, el SU650 definitivamente es una excelente opción con una gran relación costo-rendimiento.",
+        "status": "New"
+       },
+       {
+        "name": "PARLANTES LOGITECH Z407 2.0 BLUETOOTH",
+        "colors": ["Black"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/10-5-600x600.jpg",
+        "stock": 24,
+        "price": 99,
+        "summary": "80 vatios de potencia y procesamiento de señales digitales (DSP) preciso para disfrutar de un sonido vibrante, envolvente.",
+        "description": "SONIDO INMERSIVO – El sistema de altavoces 2.1 sintonizado por expertos ofrece 80 vatios de potencia de pico y 40 vatios reales. El procesamiento de señal digital ofrece un perfil de sonido equilibrado y graves mejorados, para un sonido envolvente y genuino, desde agudos nítidos a sonidos medios y bajos potentes, sin comprometer la plenitud de los graves profundos.",
+        "status": "New"
+       },
+       {
+        "name": "DIADEMA ASTRO A10 GEN 2 MULTIPLATAFORMA WHITE",
+        "colors": ["White"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/0-9-600x600.jpg",
+        "brand": "Astro",
+        "stock": 10,
+        "price": 74,
+        "summary": "Calidad de sonido mejorada: los auriculares ASTRO Gaming A10 Gen 2 para PlayStation 5, PlayStation 4, Nintendo Switch, PC, Mac cuentan con controladores dinámicos de 1.260 in personalizados para que siempre puedas escuchar a tus juegos y compañeros de equipo con claridad y precisión",
+        "description": "Mejora tu equipo para juego diario con los audífono con micrófono ASTRO A10 de segunda generación para PC/MAC, PS5, XBOX SERIES X|S, SWITCH, MOBILE. Considéralos como la siguiente evolución del equipo para PC que ya utilizas a diario. Audio formidable a través de transductores dinámicos de 32 mm, micrófono de varilla volteable para silenciar y construcción resistente con almohadillas de copas y de diadema reemplazables se combinan para ofrecer una experiencia sonora memorable. No hay que preocuparse por los sonidos oclusivos ni por comprar otros audífonos cuando las cosas empiezan a deteriorarse un poco.",
+        "status": "New"
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
+       {
+        "name": "",
+        "colors": ["", ""],
+        "category": "",
+        "images": "",
+        "stock": 1,
+        "price": 20,
+        "summary": "",
+        "description": "",
+        "status": ""
+       },
 ]
 export const categories=[
     {
@@ -332,7 +637,10 @@ export const categories=[
         name:"Replacement"
     },
     {
-        name:"Component"},{name:"Memory"
+        name:"Component"
+    },
+    {
+        name:"Memory"
     },
     {
         name:"Graphics"
