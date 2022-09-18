@@ -322,7 +322,330 @@ export const products=[
      "summary": "et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non",
      "description": "vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum",
      "status":"Used"
-    }
+    },
+    {
+     "name": "MSI GEFORCE RTX 3060 TI GAMING X 8G LHR",
+     "colors": ["Black", "White"],
+     "category": "Graphics",
+     "images": "https://clonesyperifericos.com/wp-content/uploads/2022/09/1-10-600x600.jpg",
+     "brand": "MSI",
+     "stock": 5,
+     "price": 519,
+     "summary": "Es hora de ponerse los colores del equipo. Sincroniza la iluminación con otros dispositivos compatibles para llevar el espectáculo de luces a otro nivel.",
+     "description": "El trazado de rayos es el santo grial de los gráficos de los videojuegos, simula el comportamiento físico de la luz para ofrecer una representación de calidad cinematográfica en tiempo real incluso en los juegos más exigentes a nivel visual.",
+     "status": "New"
+    },
+    {
+        "name": "Gamer Chair DXRACER FORMULA P09 BLACK",
+        "colors": ["Black", "Red", "White"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/09/1-7-600x600.jpg",
+        "brand": "Dx Racer",
+        "stock": 7,
+        "price": 349,
+        "summary": "Ya sea que esté jugando, trabajando o tomando una siesta, nuestra silla brinda un soporte de ángulo perfecto de 90° a 135° para satisfacer todas sus necesidades.",
+        "description": "Construida con el cuero preferido por los asientos de carreras junto con un diseño de combinación de colores y costuras detalladas, nuestra serie Prince puede combinar perfectamente con el estilo de su configuración y ayudarlo a dominar el mundo de los juegos.",
+        "status": "New"
+       },
+       {
+        "name": "MONITOR SAMSUNG ODYSSEY G4 27 IPS 240HZ",
+        "colors": ["Black"],
+        "category": "Graphics",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-76-600x600.jpg",
+        "brand": "Samsung",
+        "stock": 25,
+        "price": 409,
+        "summary": "Escenas a toda velocidad. La tasa de refresco de 240Hz elimina el retardo para ofrecerte un juego estimulante.",
+        "description": "Una forma realista de desafiar la reaIidad, en la que experimentarás tus juegos como nunca antes. El panel IPS te permite experimentar los colores con nitidez y con un amplio ángulo de visión de 178º, para una mayor claridad desde cualquier punto de vista. Disfruta de más píxeles y una mayor profundidad, para que tus juegos se acerquen más que nunca a la realidad",
+        "status": "New"
+       },
+       {
+        "name": "FUENTE DE PODER CORSAIR FULL MODULAR RM 1000W GOLD",
+        "colors": ["Black"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-75-600x600.jpg",
+        "brand": "Corsair",
+        "stock": 17,
+        "price": 219,
+        "summary": "EFICIENCIA CON CERTIFICACIÓN GOLD CON REGULACIÓN DEL VOLTAJE EXTREMADAMENTE PRECISA PARA OFRECER UN RENDIMIENTO SUPERIOR.",
+        "description": "Las fuentes alimentación RMx Series ofrecen un control del voltaje extremadamente preciso, un funcionamiento silencioso, una eficiencia con certificación Gold y un conjunto de cables totalmente modulares.",
+        "status": "New"
+       },
+       {
+        "name": "BOARD GIGABYTE B660M GAMING X AX DDR4",
+        "colors": ["Black"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-72-600x600.jpg",
+        "brand": "Gigabyte",
+        "stock": 4,
+        "price": 199,
+        "summary": "La entrega de energía más limpia y eficiente a la CPU con un mejor rendimiento térmico garantiza la estabilidad bajo altas frecuencias de CPU y cargas pesadas. DrMOS de 8+1+1 fases*",
+        "description": "Las placas base GIGABYTE B660 están listas para funcionar con los dispositivos PCIe 4.0 que se espera que experimenten el doble de ancho de banda que los dispositivos PCIe 3.0 actuales.",
+        "status": "New"
+       },
+       {
+        "name": "KIT 3 VENTILADORES THERMALTAKE PURE 12 LED ROJO",
+        "colors": ["White"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/3-62-600x600.jpg",
+        "brand": "Thermaltake",
+        "stock": 3,
+        "price": 29,
+        "summary": "El ventilador de 12 LED puro está diseñado para enfriarse en silencio, por lo que el usuario puede mantener su mente centrada en la tarea a mano sin molestarse.",
+        "description": "El ventilador Thermaltake Pure 12 LED viene con un rendimiento confiable y estable y un estilo magnífico y vibrante. Disponible en 120 mm, el ventilador Pure 12 LED ofrece el equilibrio perfecto entre silencio, estilo y eficiencia.",
+        "status": "New"
+       },
+       {
+        "name": "SSD ADATA ULTIMATE SU650 512GB 2.5",
+        "colors": ["Black"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/09/1-1-600x600.jpg",
+        "brand": "Adata",
+        "stock": 9,
+        "price": 19,
+        "summary": "La unidad de estado sólido Ultimate SU650 implementa Flash NAND 3D y un controlador de alta velocidad, ofreciendo capacidades de hasta 960 GB.",
+        "description": "Ofrece un rendimiento de lectura/escritura de hasta 520/450MB/s y mayor fiabilidad que los SSD con NAND 2D. El SU650 cuenta con caché SLC y tecnologías avanzadas de corrección de errores para garantizar un rendimiento e integridad de datos optimizados. Para aquellos que quieren experimentar una mejora clara de su PC, el SU650 definitivamente es una excelente opción con una gran relación costo-rendimiento.",
+        "status": "New"
+       },
+       {
+        "name": "PARLANTES LOGITECH Z407 2.0 BLUETOOTH",
+        "colors": ["Black"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/10-5-600x600.jpg",
+        "stock": 24,
+        "price": 99,
+        "summary": "80 vatios de potencia y procesamiento de señales digitales (DSP) preciso para disfrutar de un sonido vibrante, envolvente.",
+        "description": "SONIDO INMERSIVO – El sistema de altavoces 2.1 sintonizado por expertos ofrece 80 vatios de potencia de pico y 40 vatios reales. El procesamiento de señal digital ofrece un perfil de sonido equilibrado y graves mejorados, para un sonido envolvente y genuino, desde agudos nítidos a sonidos medios y bajos potentes, sin comprometer la plenitud de los graves profundos.",
+        "status": "New"
+       },
+       {
+        "name": "DIADEMA ASTRO A10 GEN 2 MULTIPLATAFORMA WHITE",
+        "colors": ["White"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/0-9-600x600.jpg",
+        "brand": "Astro",
+        "stock": 10,
+        "price": 74,
+        "summary": "Calidad de sonido mejorada: los auriculares ASTRO Gaming A10 Gen 2 para PlayStation 5, PlayStation 4, Nintendo Switch, PC, Mac cuentan con controladores dinámicos de 1.260 in personalizados para que siempre puedas escuchar a tus juegos y compañeros de equipo con claridad y precisión",
+        "description": "Mejora tu equipo para juego diario con los audífono con micrófono ASTRO A10 de segunda generación para PC/MAC, PS5, XBOX SERIES X|S, SWITCH, MOBILE. Considéralos como la siguiente evolución del equipo para PC que ya utilizas a diario. Audio formidable a través de transductores dinámicos de 32 mm, micrófono de varilla volteable para silenciar y construcción resistente con almohadillas de copas y de diadema reemplazables se combinan para ofrecer una experiencia sonora memorable. No hay que preocuparse por los sonidos oclusivos ni por comprar otros audífonos cuando las cosas empiezan a deteriorarse un poco.",
+        "status": "New"
+       },
+       {
+        "name": "GIGABYTE RTX 3050 GAMING OC 8G",
+        "colors": ["Black"],
+        "category": "Graphics",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-64-600x600.jpg",
+        "brand": "Gigabyte",
+        "stock": 8,
+        "price": 499,
+        "summary": "El sistema de refrigeración WINDFORCE 3X cuenta con 3 ventiladores de hoja exclusivos de 80 mm, giro alternativo, 2 tubos de calor de cobre compuestos GPU táctiles directos, ventilador activo 3D y refrigeración de pantalla, que juntos proporcionan una disipación de calor de alta eficiencia.",
+        "description": "La tarjeta gráfica utiliza el mejor diseño de fase de potencia para permitir que el MOSFET funcione a una temperatura más baja, y el diseño de protección contra sobretemperatura y el equilibrio de carga para cada MOSFET, además de los condensadores y estranguladores certificados Ultra Durable, para proporcionar un rendimiento excelente y una vida útil más larga del sistema.",
+        "status": "New"
+       },
+       {
+        "name": "TECLADO MECANICO STEELSERIES APEX PRO MINI WIRELESS 60%",
+        "colors": ["Black"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-62-600x600.jpg",
+        "brand": "Steelseries",
+        "stock": 1,
+        "price": 449,
+        "summary": "Los interruptores ajustables OmniPoint 2,0 más rápidos del mundo con una respuesta 11 veces más rápida y una actuación 10 veces más rápida",
+        "description": "l poder de adaptarse a cualquier juego está al alcance de tu mano. Deje a la competencia en el polvo con pulsaciones de teclas ultrarrápidas a una profundidad de actuación de 0,2 mm o presiones decisivas y más profundas a 3,8 mm. Ajuste con precisión las configuraciones de teclas individuales al 0,1 mm más cercano para forjar su camino hacia la victoria.",
+        "status": "New"
+       },
+       {
+        "name": "MOUSE GAMER RIVAL 5 DESTINY EDITION",
+        "colors": ["White"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-63-600x600.jpg",
+        "brand": "Steelseries",
+        "stock": 23,
+        "price": 74,
+        "summary": "Perfecto para todos los FPS, MMO, MOBA, Battle Royale y otros juegos de ritmo rápido",
+        "description": "Con una forma versátil, muchos tamaños de manos y estilos de agarre pueden alcanzar fácil y cómodamente todos los botones laterales intuitivos para tomar decisiones ultrarrápidas en cualquier juego.",
+        "status": "New"
+       },
+       {
+        "name": "BOARD GIGABYTE Z690 AERO G DDR4 WHITE",
+        "colors": ["Black"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-56-600x600.jpg",
+        "brand": "Gigabyte",
+        "stock": 3,
+        "price": 449,
+        "summary": "Admite procesadores de la serie Intel® Core™ de 12.ª generación",
+        "description": "GIGABYTE VisionLINK es una extensión de su idea y creación. La transmisión de datos, salida de video y carga de energía a través de un cable USB Type-C ® simplificará la experiencia del usuario más que nunca. Con multitarea perfecta entre su PC y dispositivos, le permite trabajar como un profesional. * La compatibilidad puede variar según la configuración del sistema y las especificaciones del dispositivo.",
+        "status": "New"
+       },
+       {
+        "name": "PROCESADOR AMD RYZEN 7 5800X 3D",
+        "colors": ["Black"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2021/03/1-26-600x599.jpg",
+        "brand": "AMD",
+        "stock": 7,
+        "price": 20,
+        "summary": "El procesador de escritorio para juegos más rápido del mundo y el primer procesador para juegos con tecnología de apilamiento 3D.",
+        "description": "Para la avanzada plataforma Socket AM4, puede soportar PCIe 4.0 en placas base X570 y B550",
+        "status": "New"
+       },
+       {
+        "name": "CHASIS MSI ATX MPG VELOX 100R",
+        "colors": ["Black", "White"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-39.jpg",
+        "brand": "MSI",
+        "stock": 4,
+        "price": 199,
+        "summary": "Optimizada para proporcionar un flujo de aire generoso y eficaz para la refrigeración con rejillas de ventilación incorporadas en todo el sistema.",
+        "description": "Equipa tu puesto de combate como ningún otro con la serie MPG VELOX 100. Inspirada en los patrones de velocidad y en los efectos de iluminación animados, la serie MPG VELOX 100 te ayudará a dominar el campo de batalla con una potencia inigualable.",
+        "status": "New"
+       },
+       {
+        "name": "MONITOR LG 32 32UK580 ERGO 4K UHD",
+        "colors": ["Black"],
+        "category": "Graphics",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-31-600x600.jpg",
+        "brand": "LG",
+        "stock": 78,
+        "price": 569,
+        "summary": "La tecnología HDR ahora se aplica a varios contenidos. Este monitor es compatible con HDR10 (alto rango dinámico).",
+        "description": "La flexibilidad mejorada del soporte Ergo ofrece un ajuste ergonómico ampliado de extensión, retracción, giro, pivote, altura e inclinación, así como una posición perfecta de la pantalla para una experiencia de usuario más cómoda y sostenible.",
+        "status": "New"
+       },
+       {
+        "name": "TECLADO GAMER RAZER HUNTSMAN V2 OPTICO",
+        "colors": ["Black"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-30-600x600.jpg",
+        "brand": "Razer",
+        "stock": 12,
+        "price": 269,
+        "summary": "Razer Interruptores ópticos lineales Gen-2: mejorados con amortiguadores de sonido para una experiencia de escritura aún más silenciosa, los interruptores suaves y consistentes ahora también son más sensibles con una tasa de sondeo de hasta 8000 Hz para una menor latencia de entrada.",
+        "description": "SIN LUJOS. TODO RENDIMIENTO. Si la ventaja máxima es más su velocidad, ármese con una capacidad de respuesta insuperable. Conozca el Razer Huntsman V2, un teclado óptico para juegos con una latencia de entrada casi nula y completamente equipado con otras características de alta gama para que sea el paquete completo.",
+        "status": "New"
+       },
+       {
+        "name": "PARLANTES BARRA DE SONIDO RAZER LEVIATHAN V2",
+        "colors": ["Black"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-27-600x600.jpg",
+        "brand": "Razer",
+        "stock": 15,
+        "price": 249,
+        "summary": "Barra de sonido y subwoofer: repleto de 2 controladores de rango completo, un subwoofer de disparo descendente y más, este sistema de sonido todo en uno está diseñado para proporcionar un sonido de gama completa y alta fidelidad que eleva tu experiencia de audio",
+        "description": "Potencia tu equipo de todas las formas imaginables con la Razer Leviathan V2, una barra de sonido con subwoofer y múltiples diafragmas queincluye THX Spatial Audio y Razer Chroma™ RGB. Experimenta la máxima inmersión a través de la vista y el oído mediante un Bluetooth 5.2 de baja latencia que garantiza la fluidez en PC y dispositivos móviles.",
+        "status": "New"
+       },
+       {
+        "name": "CAMARA WEB FULL HD TRUST GXT 1160 VERO 1080P",
+        "colors": ["Black"],
+        "category": "Cam",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-23-600x600.jpg",
+        "brand": "Trust",
+        "stock": 6,
+        "price": 39,
+        "summary": "Webcam de alta definición con resolución de hasta 8 megapíxeles (3840 x 2160)",
+        "description": "Tanto si eres un streamer, un creador de contenidos o si trabajas desde casa, en los tiempos que corren necesitas una buena cámara web. La Trust Vero hace exactamente lo que esperas de una cámara web de calidad. Tiene una resolución Full HD, un micrófono integrado y, gracias al balance de blancos automático, tu imagen siempre será la mejor.",
+        "status": "New"
+       },
+       {
+        "name": "BASE REFRIGERANTE PARA PORTATIL TRUST QUNO GXT 1125 17.3¨",
+        "colors": ["Black", "White"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-20-600x600.jpg",
+        "brand": "Quno",
+        "stock": 17,
+        "price": 37,
+        "summary": "Diseño premium con placa superior de malla de aluminio resistente que se adapta a cualquier portátil de hasta 17.3 pulgadas.",
+        "description": "¿Quieres aplacar el calor de las sesiones de gaming más candentes? ¿O quizá pasar del gaming al trabajo sin hacer una pausa? El pedestal de refrigeración para portátiles GXT 1125 Quno de Trust mantiene el equipo refrigerado en cualquier situación. Con una iluminación azul integrada en los 5 ventiladores, el pedestal es efectivo y atractivo al mismo tiempo.",
+        "status": "New"
+       },
+       {
+        "name": "DISCO SOLIDO SSD KINGSTON A400 1.92TB",
+        "colors": ["Black"],
+        "category": "Memory",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-15-600x600.jpg",
+        "brand": "Kingston",
+        "stock": 7,
+        "price": 20,
+        "summary": "SDD, capacidad: 1920 GB",
+        "description": "La unidad A400 de estado sólido de Kingston ofrece enormes mejoras en la velocidad de respuesta, sin actualizaciones adicionales del hardware. Brinda lapsos de arranque, carga y de transferencia de archivos increíblemente más breves en comparación con las unidades de disco duro mecánico. Apoyada en su controlador de la más reciente generación, que ofrece velocidades de lectura y escritura de hasta 500 MB/s y 450 MB/s1, respectivamente, esta unidad SSD es 10 veces más rápida que los discos duros tradicionales y provee un mejor rendimiento, velocidad de respuesta ultrarrápida en el procesamiento multitareas y una aceleración general del sistema. Además son más fiables y duraderas que las unidades de disco duro, y están disponibles en varias capacidades que van de 120 GB hasta 960 GB2.",
+        "status": "New"
+       },
+       {
+        "name": "EVGA XC RTX 3050 8GB",
+        "colors": ["Black"],
+        "category": "Graphics",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/1-10-600x600.jpg",
+        "brand": "EVGA",
+        "stock": 1,
+        "price": 499,
+        "summary": "Trazado de rayos en tiempo real en juegos para gráficos de vanguardia, hiperrealistas.",
+        "description": "Reloj de impulso real: 1845 MHz. Detalles de memoria: 8192 MB GDDR6.",
+        "status": "New"
+       },
+       {
+        "name": "PORTATIL MSI KATANA GF76 12UC INTEL I7 12700H RTX 3050",
+        "colors": ["Black", "White", "Red"],
+        "category": "Computer",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/0-600x600.jpg",
+        "brand": "MSI",
+        "stock": 17,
+        "price": 1599,
+        "summary": "Katana GF es tan poderosa y resistente como una espada y está lista para un optimo rendimiento",
+        "description": "PORTÁTILES GEFORCE RTX SERIE 30 EL JUEGO DEFINITIVO Están construidos con Ampere, la arquitectura RTX de segunda generación de NVIDIA, para brindarle los gráficos con trazado de rayos más realistas y funciones de IA de vanguardia como NVIDIA DLSS. Además, Max-Q Technologies libera el poder de la IA para crear laptops delgadas y de alto rendimiento que son más rápidas y mejores que nunca.",
+        "status": "New"
+       },
+       {
+        "name": "LICENCIA ORIGINAL MICROSOFT WIN 10 PRO",
+        "colors": ["White"],
+        "category": "Peripheral",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/2-2-600x600.jpg",
+        "brand": "Microsoft Corporation",
+        "stock": 49,
+        "price": 209,
+        "summary": "Licencia de Microsoft Windows – DSP OEI DVD – 1pk",
+        "description": "Windows 10 Pro se diseñó pensando en tu forma de trabajar y para estar listo para la forma en que trabajarás.",
+        "status": "New"
+       },
+       {
+        "name": "MICROFONO RAZER SEIREN V2 X",
+        "colors": ["Black", "White"],
+        "category": "Audio",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/07/1-27-600x600.jpg",
+        "brand": "Razer",
+        "stock": 7,
+        "price": 99,
+        "summary": "Destaca entre la multitud de streamers con una claridad que se abre paso entre el ruido. Hazte oír con el Razer Seiren V2 X.",
+        "description": "a impresionante sensibilidad del micrófono es capaz de captar tu voz con un alto grado de precisión, sobre todo en frecuencias altas, garantizando que los demás te oigan como realmente suenas.",
+        "status": "New"
+       },
+       {
+        "name": "FUENTE THERMALTAKE SMART BX1 750W 80 PLUS BRONZE",
+        "colors": ["Black"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/07/1-23-600x600.jpg",
+        "brand": "Thermaltake",
+        "stock": 8,
+        "price": 79,
+        "summary": "Bronce 80+ – eficiencia de hasta un 88% y optimizado para C6/C7 Estados listos",
+        "description": "Construida para ofrecer 80 PLUS Bronze con una eficiencia energética del 88 %, la serie Smart BX1 está disponible en modelos de 450 W a 750 W. Construido con un ventilador de cojinete hidráulico de 120 mm, condensadores principales japoneses y otros componentes premium para ayudar a brindar una salida de potencia continua y estable a 40 ℃, operación casi silenciosa y rendimiento confiable.",
+        "status": "New"
+       },
+       {
+        "name": "BOARD ASROCK B550M – ITX AC",
+        "colors": ["Black"],
+        "category": "Component",
+        "images": "https://clonesyperifericos.com/wp-content/uploads/2022/07/1-25-600x600.jpg",
+        "brand": "ASRock",
+        "stock": 10,
+        "price": 179,
+        "summary": "Compatible con procesadores AMD AM4 Ryzen / Future AMD Ryzen de 3ª generación",
+        "description": "Diseño de 8 fases de potencia. Con componentes resistentes y una entrega de energía completamente fluida a la CPU. Además, ofrece capacidades de overclocking inigualables y un rendimiento mejorado con la temperatura más baja también para jugadores avanzados.",
+        "status": "New"
+       },
 ]
 export const categories=[
     {
@@ -332,7 +655,10 @@ export const categories=[
         name:"Replacement"
     },
     {
-        name:"Component"},{name:"Memory"
+        name:"Component"
+    },
+    {
+        name:"Memory"
     },
     {
         name:"Graphics"
