@@ -32,32 +32,52 @@ function combinedFilters(conditions){
     }else
     conditionSearch[prop]=new RegExp(conditions[prop],"i")
   }
-  //console.log(conditionSearch)
   return conditionSearch;
 }
 
-async function valuesAllProps(){
-  const props={colors:[], brand:[], status:[]};
+/* async function valuesAllProps(){
+  const props={colors:[], brand:[],price:[]};
   const currentProducts=await Product.find();
+  let min,max;
   for(const current in props){
-      currentProducts.forEach(p =>props[current]=Array.isArray(p[current])?[...props[current], ...p[current]]:[...props[current],p[current]]
-    );
+    currentProducts.forEach(p =>{
+      if(current=="price"){
+        if(!min&&!max){
+          min=p[current];
+          max=p[current];
+        }else{
+          if(min>p[current]) min=p[current];
+          if(max<p[current]) max=p[current];
+        }
+        props[current]=[min,max]
+      }else {
+        props[current]=Array.isArray(p[current])?[...props[current], ...p[current]]:[...props[current],p[current]]
+      }
+    }
+  );
     props[current]=props[current].filter((item,index)=>{
       return props[current].indexOf(item) === index;
     })
   }  
-  return props;
-}
+  return {...props,status:["New","Used"]};
+} */
 
 export const getProducts = async (req, res) => {
-  const {start, ...conditionByQuery}=req.query;
-
-  const condition=await combinedFilters(conditionByQuery); 
-  await valuesAllProps();
+  const { start, order, ...conditionByQuery } = req.query;
+  var field, by;
+  if(order) [field, by] = order.split('/');
+  const condition = await combinedFilters(conditionByQuery);
   const index = parseInt(req.query.start) * 9
-  var count = await Product.estimatedDocumentCount()
-  const products = await Product.find(condition).skip(index).limit(9);
-  return res.json({ products, count/*, props */});
+  var count = await Product.countDocuments(condition)
+  var products;
+  if (order) products = await Product.find(condition).sort({ [field]: by}).skip(index).limit(9);
+  else products = await Product.find(condition).skip(index).limit(9);
+  const brand = await Product.find(condition, { select: "brand" }).distinct("brand");
+  const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
+  const result = await Product.find(condition, { select: "price" }).distinct("price")
+  const prices = result.sort((a, b) => a - b);
+  const price = [prices[0], prices[prices.length - 1]];
+  return res.json({ products, count, brand, colors, price });
 };
 
 export const updateProductById = async (req, res) => {
