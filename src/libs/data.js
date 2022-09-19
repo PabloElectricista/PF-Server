@@ -412,6 +412,7 @@ export const products=[
         "colors": ["Black"],
         "category": "Peripheral",
         "images": "https://clonesyperifericos.com/wp-content/uploads/2022/08/10-5-600x600.jpg",
+        "brand": "Logitech",
         "stock": 24,
         "price": 99,
         "summary": "80 vatios de potencia y procesamiento de señales digitales (DSP) preciso para disfrutar de un sonido vibrante, envolvente.",
