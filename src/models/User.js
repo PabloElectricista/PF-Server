@@ -15,6 +15,9 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    picture: {
+      type: String
+    },
     roles: [
       {
         type: mongoose.Schema.Types.ObjectId,

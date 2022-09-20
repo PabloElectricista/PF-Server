@@ -12,6 +12,7 @@ export const createUser = async (req, res) => {
       username,
       email,
       password,
+      picture,
       roles: rolesFound.map((role) => role._id),
     });
 
