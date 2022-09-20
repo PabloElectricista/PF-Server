@@ -27,7 +27,7 @@ export const createUser = async (req, res) => {
       username: savedUser.username,
       email: savedUser.email,
       picture: savedUser.picture,
-      roles: savedUser.roles,
+      roles
     });
   } catch (error) {
     console.error(error);
