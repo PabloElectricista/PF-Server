@@ -9,7 +9,7 @@ const router = Router();
 router.get("/", getUsers)
 router.get("/byEmail/:email", getUserEmail)
 router.get("/byId/:id", getUser)
-router.post("/", [verifyToken, isAdmin, checkExistingUser], createUser);
+router.post("/", /* [verifyToken, isAdmin, checkExistingUser],*/ createUser);
 router.put("/", putUser)
 
 export default router;
