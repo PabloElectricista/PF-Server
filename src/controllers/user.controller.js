@@ -3,7 +3,7 @@ import Role from "../models/Role.js";
 
 export const createUser = async (req, res) => {
   try {
-    const { username, email, password, roles } = req.body;
+    const { username, email, password, picture, roles } = req.body;
 
     const rolesFound = await Role.find({ name: { $in: roles } });
 
