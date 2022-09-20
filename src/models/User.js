@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema(
         ref: "Role",
       },
     ],
-    isAdDmin: {
+    isAdmin: {
       type: Boolean,
       default: false
     },
