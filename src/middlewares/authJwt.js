@@ -10,8 +10,16 @@ export const verifyToken = async (req, res, next) => {
   if (!token) return res.status(403).json({ message: "No token provided" });
 
   try {
-    let user = await check(jwt.verify(token, SECRET));
-    if (!user) user = await check(jwt_decode(token));
+    var decoded, userId, email, user;
+    decoded = jwt_decode(token)
+    email = decoded.email;
+    user = await User.findOne({ email });
+
+    if (!user) {
+      decoded = jwt.verify(token, SECRET)
+      userId = decoded.id;
+      user = await User.findById(userId, { password: 0 });
+    }
     if (!user) return res.status(404).json({ message: "No user found" });
 
     next();
@@ -19,12 +27,6 @@ export const verifyToken = async (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized!" });
   }
 };
-
-const check = async (decoded) => {
-  let userId = decoded.id;
-  let user = await User.findById(userId, { password: 0 });
-  return user
-}
 
 export const isModerator = async (req, res, next) => {
   try {
