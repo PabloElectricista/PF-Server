@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { SECRET } from "../config.js";
 import User from "../models/User.js";
 import Role from "../models/Role.js";
+import jwt_decode from "jwt-decode";
 
 export const verifyToken = async (req, res, next) => {
   let token = req.headers["x-access-token"];
@@ -9,10 +10,8 @@ export const verifyToken = async (req, res, next) => {
   if (!token) return res.status(403).json({ message: "No token provided" });
 
   try {
-    const decoded = jwt.verify(token, SECRET);
-    req.userId = decoded.id;
-
-    const user = await User.findById(req.userId, { password: 0 });
+    let user = await check(jwt.verify(token, SECRET));
+    if (!user) user = await check(jwt_decode(token));
     if (!user) return res.status(404).json({ message: "No user found" });
 
     next();
@@ -20,6 +19,12 @@ export const verifyToken = async (req, res, next) => {
     return res.status(401).json({ message: "Unauthorized!" });
   }
 };
+
+const check = async (decoded) => {
+  let userId = decoded.id;
+  let user = await User.findById(userId, { password: 0 });
+  return user
+}
 
 export const isModerator = async (req, res, next) => {
   try {
