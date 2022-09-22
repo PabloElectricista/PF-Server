@@ -1,11 +1,13 @@
 import Product from "../models/Product.js";
-
+import User from "../models/User.js"
 export const createProduct = async (req, res) => {
-
   try {
+    
     const newProduct = new Product(req.body);
     const productSaved = await newProduct.save();
-
+    const user = await User.findById(req.body.user).populate({path:"products"})
+    user.products.push(newProduct._id); 
+    await user.save();
     res.status(201).json(productSaved);
   } catch (error) {
     console.log(error);
