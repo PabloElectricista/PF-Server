@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 import Role from "../models/Role.js";
-
+import {authMail} from './nodemailer/send-mail.js'
 export const createUser = async (req, res) => {
   try {
     const { username, email, password, roles } = req.body;
@@ -20,6 +20,8 @@ export const createUser = async (req, res) => {
 
     // saving the new user
     const savedUser = await user.save();
+
+    await authMail(email,username)
 
     return res.status(200).json({
       _id: savedUser._id,
