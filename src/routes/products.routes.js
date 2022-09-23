@@ -14,7 +14,9 @@ router.get("/", getProducts);
 
 router.get("/:productId", getProductById);
 
-router.post("/", [verifyToken], createProduct);
+router.post("/"
+// , [verifyToken]
+, createProduct);
 
 router.put("/:productId", [verifyToken], updateProductById);
 
