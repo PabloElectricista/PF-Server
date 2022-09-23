@@ -1,6 +1,8 @@
 import Product from "../models/Product.js";
-import User from "../models/User.js";
+// import User from "../models/User.js";
 import { uploadImage } from "../utils/cloudinary.js";
+import fs from "fs-extra";
+
 export const createProduct = async (req, res) => {
   try {
     console.log(req.body)
@@ -10,6 +12,7 @@ export const createProduct = async (req, res) => {
       const result = await uploadImage(req.files.images.tempFilePath)
       console.log(result, "result?")
       newProduct.images = [...newProduct.images, result.url]
+      await fs.unlink(req.files.images.tempFilePath)
     }
     // const user = await User.findById(req.body.user).populate({path:"products"})
     // user.products.push(newProduct._id); 
