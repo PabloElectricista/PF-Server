@@ -75,11 +75,13 @@ export const getProducts = async (req, res) => {
   if (order) products = await Product.find(condition).sort({ [field]: by}).skip(index).limit(9);
   else products = await Product.find(condition).skip(index).limit(9);
   const brand = await Product.find(condition, { select: "brand" }).distinct("brand");
+  const categories = await Product.find(condition, { select: "category"}).distinct("category")
   const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
   const result = await Product.find(condition, { select: "price" }).distinct("price")
+
   const prices = result.sort((a, b) => a - b);
   const price = [prices[0], prices[prices.length - 1]];
-  return res.json({ products, count, brand, colors, price });
+  return res.json({ products, count, brand, colors, price, categories });
 };
 
 export const updateProductById = async (req, res) => {

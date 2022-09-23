@@ -29,11 +29,26 @@ async function updateStockAndGetProducts(products){
     const productsToOrder= await Promise.all(currentProducts)
     return productsToOrder
 }
+
 export const getOrders = async(req,res)=>{
     try{
         const orders = await Order.find().sort({"createdAt":"desc"});
         res.status(201).send(orders)
     }catch(error){  
         res.status(404).json(error)
+    }
+}
+
+export const putOrder= async (req,res)=>{
+    try{
+        const {update,id}=req.body;
+        const currentOrder=await Order.findOneAndUpdate({_id:id},update)/*.exec((error,order)=>{
+            console.log(order)
+        })*/
+
+        await currentOrder.save();
+        res.status(200).send(currentOrder)
+    }catch(error){
+        res.status(500).json(error)
     }
 }
