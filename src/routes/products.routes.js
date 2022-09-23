@@ -16,7 +16,7 @@ router.get("/:productId", getProductById);
 
 router.post("/", [verifyToken, isAdmin], createProduct);
 
-router.put("/:productId", /*[verifyToken, isAdmin],*/ updateProductById);
+router.put("/:productId",[verifyToken, isAdmin], updateProductById);
 
 router.delete("/:productId", [verifyToken, isAdmin], deleteProductById);
 
