@@ -1,13 +1,20 @@
 import Product from "../models/Product.js";
-import User from "../models/User.js"
+import User from "../models/User.js";
+import { uploadImage } from "../utils/cloudinary.js";
 export const createProduct = async (req, res) => {
   try {
     console.log(req.body)
     const newProduct = new Product(req.body);
+    console.log(req.files, "el files")
+    if (req.files?.images) {
+      const result = await uploadImage(req.files.images.tempFilePath)
+      console.log(result, "result?")
+      newProduct.images = [...newProduct.images, result.url]
+    }
+    // const user = await User.findById(req.body.user).populate({path:"products"})
+    // user.products.push(newProduct._id); 
+    // await user.save();
     const productSaved = await newProduct.save();
-    const user = await User.findById(req.body.user).populate({path:"products"})
-    user.products.push(newProduct._id); 
-    await user.save();
     res.status(201).json(productSaved);
   } catch (error) {
     console.log(error);
