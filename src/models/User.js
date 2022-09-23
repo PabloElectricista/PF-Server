@@ -22,8 +22,12 @@ const productSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Role",
-      },
+      }
     ],
+    shopping:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"Order"
+    }],
     isAdmin: {
       type: Boolean,
       default: false

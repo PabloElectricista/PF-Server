@@ -2,10 +2,6 @@ import { model, Schema } from "mongoose";
 
 const productSchema = new Schema(
     {
-        user: {
-            type: Schema.Types.ObjectId,
-            ref: "User"
-        },
         name: {
             type: String,
             required: true,
