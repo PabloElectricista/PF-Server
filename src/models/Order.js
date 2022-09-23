@@ -14,6 +14,15 @@ const orderSchema=new Schema({
             type:Number,
         }
     }],
+    status:{
+        type: String,
+        enum:["Pending","Canceled","Completed"],
+        default:"Pending"
+    },
+    isBlocked:{
+        type:Boolean,
+        default:false
+    },
     total_amount:{
         type: Number,
         default:function(){

@@ -5,14 +5,11 @@ export const postOrders = async (req,res)=>{
     try{
         const {buyer_id,products}=req.body;
         const userBuyer=await User.findById(buyer_id).populate("shopping")
-        //const currentProducts = products.map(async p=> await updateStockAndGetProducts(p.id, p.quantity))
         const currentProducts= await updateStockAndGetProducts(products)
-        //console.log(currentProducts)
         const newOrder=new Order({
             buyer_id,
             products:currentProducts
         })
-        //console.log(newOrder)
         const orderSaved=await newOrder.save();
         userBuyer.shopping.push(orderSaved);
         await userBuyer.save()
@@ -26,11 +23,10 @@ async function updateStockAndGetProducts(products){
     const currentProducts= products.map( async p=>{
         const product = await Product.findById(p.id)
         product.stock-=p.quantity
+        await product.save()
         return {product, quantity:p.quantity}
     })
-
     const productsToOrder= await Promise.all(currentProducts)
-    console.log(productsToOrder)
     return productsToOrder
 }
 export const getOrders = async(req,res)=>{
