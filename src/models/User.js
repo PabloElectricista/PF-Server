@@ -19,19 +19,9 @@ const productSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Role",
-      },
-    ],
-    products:[
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"Product"
       }
     ],
     shopping:[{
-      type: mongoose.Schema.Types.ObjectId,
-      ref:"Order"
-    }],
-    sales:[{
       type: mongoose.Schema.Types.ObjectId,
       ref:"Order"
     }],

@@ -2,7 +2,7 @@ import Product from "../models/Product.js";
 import User from "../models/User.js"
 export const createProduct = async (req, res) => {
   try {
-    
+    console.log(req.body)
     const newProduct = new Product(req.body);
     const productSaved = await newProduct.save();
     const user = await User.findById(req.body.user).populate({path:"products"})
