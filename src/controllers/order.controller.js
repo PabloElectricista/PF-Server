@@ -1,6 +1,7 @@
 import Order from '../models/Order.js'
 import User from '../models/User.js'
 import Product from '../models/Product.js'
+
 export const postOrders = async (req,res)=>{
     try{
         const {buyer_id,products}=req.body;
@@ -41,14 +42,24 @@ export const getOrders = async(req,res)=>{
 
 export const putOrder= async (req,res)=>{
     try{
-        const {update,id}=req.body;
-        const currentOrder=await Order.findOneAndUpdate({_id:id},update)/*.exec((error,order)=>{
-            console.log(order)
-        })*/
-
+        const {id}=req.params
+        const {update}=req.body;
+        const currentOrder=await Order.findOneAndUpdate({_id:id},update)
         await currentOrder.save();
         res.status(200).send(currentOrder)
     }catch(error){
         res.status(500).json(error)
+    }
+}
+
+export const orderByUser=async (req,res)=>{
+    try{
+        const {userId}=req.params;
+        const currentUser = await User.findById(userId).populate("shopping")
+
+        console.log(currentUser.shopping)
+        res.send(currentUser.shopping)
+    }catch(error){
+        res.status(500).send(error)
     }
 }
