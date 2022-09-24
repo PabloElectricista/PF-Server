@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { SECRET } from "../config.js";
 import User from "../models/User.js";
 import Role from "../models/Role.js";
+import jwt_decode from "jwt-decode";
 
 export const verifyToken = async (req, res, next) => {
   let token = req.headers["x-access-token"];
@@ -9,10 +10,16 @@ export const verifyToken = async (req, res, next) => {
   if (!token) return res.status(403).json({ message: "No token provided" });
 
   try {
-    const decoded = jwt.verify(token, SECRET);
-    req.userId = decoded.id;
+    var decoded, userId, email, user;
+    decoded = jwt_decode(token)
+    email = decoded.email;
+    user = await User.findOne({ email });
 
-    const user = await User.findById(req.userId, { password: 0 });
+    if (!user) {
+      decoded = jwt.verify(token, SECRET)
+      userId = decoded.id;
+      user = await User.findById(userId, { password: 0 });
+    }
     if (!user) return res.status(404).json({ message: "No user found" });
 
     next();

@@ -7,6 +7,7 @@ import {
   checkExistingRole,
   checkExistingUser,
 } from "../middlewares/verifySignup.js";
+import { verifyToken } from "../middlewares/authJwt.js";
 
 const router = Router();
 
@@ -18,7 +19,7 @@ router.use((req, res, next) => {
   next();
 });
 
-router.post("/signup", [checkExistingUser, checkExistingRole], signupHandler);
+router.post("/signup", [verifyToken, checkExistingUser, checkExistingRole], signupHandler);
 
 router.post("/signin", signinHandler);
 
