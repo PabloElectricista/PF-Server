@@ -1,13 +1,23 @@
 import Product from "../models/Product.js";
-import User from "../models/User.js"
+// import User from "../models/User.js";
+import { uploadImage } from "../utils/cloudinary.js";
+import fs from "fs-extra";
+
 export const createProduct = async (req, res) => {
   try {
     console.log(req.body)
     const newProduct = new Product(req.body);
+    console.log(req.files, "el files")
+    if (req.files?.images) {
+      const result = await uploadImage(req.files.images.tempFilePath)
+      console.log(result, "result?")
+      newProduct.images = [...newProduct.images, result.url]
+      await fs.unlink(req.files.images.tempFilePath)
+    }
+    // const user = await User.findById(req.body.user).populate({path:"products"})
+    // user.products.push(newProduct._id); 
+    // await user.save();
     const productSaved = await newProduct.save();
-    const user = await User.findById(req.body.user).populate({path:"products"})
-    user.products.push(newProduct._id); 
-    await user.save();
     res.status(201).json(productSaved);
   } catch (error) {
     console.log(error);
@@ -65,7 +75,7 @@ function combinedFilters(conditions){
 } */
 
 export const getProducts = async (req, res) => {
-  const { start, order, ...conditionByQuery } = req.query;
+  const { start, order, limit, ...conditionByQuery } = req.query;
   var field, by;
   if(order) [field, by] = order.split('/');
   const condition = await combinedFilters(conditionByQuery);
@@ -73,7 +83,7 @@ export const getProducts = async (req, res) => {
   var count = await Product.countDocuments(condition)
   var products;
   if (order) products = await Product.find(condition).sort({ [field]: by}).skip(index).limit(9);
-  else products = await Product.find(condition).skip(index).limit(9);
+  else products = await Product.find(condition).skip(index).limit(limit||9);
   const brand = await Product.find(condition, { select: "brand" }).distinct("brand");
   const categories = await Product.find(condition, { select: "category"}).distinct("category")
   const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
