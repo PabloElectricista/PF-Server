@@ -36,6 +36,10 @@ const productSchema = new Schema(
             enum:["New","Used"],
             default:"New"
         },
+        isDisabled:{
+            type: Boolean,
+            default:false
+        }
         // reviews: [reviewSchema]
     },
     {

@@ -88,10 +88,10 @@ export const getProducts = async (req, res) => {
   const categories = await Product.find(condition, { select: "category"}).distinct("category")
   const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
   const result = await Product.find(condition, { select: "price" }).distinct("price")
-
+  const currentProducts= products.filter(p=>!p.isDisabled)
   const prices = result.sort((a, b) => a - b);
   const price = [prices[0], prices[prices.length - 1]];
-  return res.json({ products, count, brand, colors, price, categories });
+  return res.json({ product:currentProducts, count, brand, colors, price, categories });
 };
 
 export const updateProductById = async (req, res) => {
