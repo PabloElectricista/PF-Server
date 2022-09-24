@@ -1,11 +1,9 @@
 import User from "../models/User.js";
 import Role from "../models/Role.js";
-<<<<<<< HEAD
 import {authMail} from './nodemailer/send-mail.js'
-=======
 import jwt_decode from "jwt-decode";
 
->>>>>>> c5bc5a805a8a4efb3e64d26504491c61bb3b2674
+
 export const createUser = async (req, res) => {
     try {
         const { credential } = req.body;
@@ -19,7 +17,7 @@ export const createUser = async (req, res) => {
         if (!!userExist) {
             return res.status(200).json(userExist);
         }
-        
+
         const rolesFound = await Role.find({ name: "user" });
         const password = await User.encryptPassword("12345678");
         // creating a new User
@@ -35,28 +33,11 @@ export const createUser = async (req, res) => {
         let savedUser = await user.save();
         savedUser.password = ""
         savedUser.roles = "user"
-
-<<<<<<< HEAD
-    // saving the new user
-    const savedUser = await user.save();
-
-    await authMail(email,username)
-
-    return res.status(200).json({
-      _id: savedUser._id,
-      username: savedUser.username,
-      email: savedUser.email,
-      roles: savedUser.roles,
-    });
-  } catch (error) {
-    console.error(error);
-  }
-=======
+        await authMail(email, username)
         return res.status(200).json(savedUser);
     } catch (error) {
         return
     }
->>>>>>> c5bc5a805a8a4efb3e64d26504491c61bb3b2674
 };
 
 export const getUsers = async (req, res) => {
