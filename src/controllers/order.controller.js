@@ -1,19 +1,20 @@
 import Order from '../models/Order.js'
 import User from '../models/User.js'
 import Product from '../models/Product.js'
-
+import {emailShopping} from './nodemailer/send-mail.js'
 export const postOrders = async (req,res)=>{
     try{
         const {buyer_id,products}=req.body;
         const userBuyer=await User.findById(buyer_id).populate("shopping")
         const currentProducts= await updateStockAndGetProducts(products)
         const newOrder=new Order({
-            buyer_id,
+            buyer:userBuyer,
             products:currentProducts
         })
         const orderSaved=await newOrder.save();
         userBuyer.shopping.push(orderSaved);
         await userBuyer.save()
+        await emailShopping(orderSaved,userBuyer)
         res.json("Order loaded!").status(201)
     }catch(error){
         res.status(500).json(error)

@@ -1,7 +1,7 @@
 import {Schema,model} from "mongoose"
 
 const orderSchema=new Schema({
-    buyer_id:{
+    buyer:{
         type:Schema.Types.ObjectId,
         ref:"User"
     },
