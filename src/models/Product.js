@@ -36,7 +36,7 @@ const productSchema = new Schema(
             enum:["New","Used"],
             default:"New"
         },
-        reviews: [reviewSchema]
+        // reviews: [reviewSchema]
     },
     {
         timestamps: true,
