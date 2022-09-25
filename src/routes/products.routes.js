@@ -3,10 +3,9 @@ import {
   getProducts,
   createProduct,
   updateProductById,
-  deleteProductById,
   getProductById,
 } from "../controllers/products.controller.js";
-import { verifyToken, isAdmin } from "../middlewares/authJwt.js";
+import { verifyToken } from "../middlewares/authJwt.js";
 
 const router = Router();
 
@@ -16,8 +15,6 @@ router.get("/:productId", getProductById);
 
 router.post("/", [verifyToken], createProduct);
 
-router.put("/:productId",[verifyToken], updateProductById);
-
-// router.delete("/:productId", [verifyToken, isAdmin], deleteProductById);
+router.put("/:productId", [verifyToken], updateProductById);
 
 export default router;
