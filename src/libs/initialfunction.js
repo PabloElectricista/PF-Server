@@ -4,11 +4,12 @@ import {products,categories} from './data.js';
 
 const fillDatabase = async () => {
     try {
-        var countProducts = await Product.estimatedDocumentCount()
-        if (countProducts == 0) await Product.insertMany(products)
+        // var countProducts = await Product.estimatedDocumentCount()
+        // if (countProducts == 0) await Product.insertMany(products)
 
-        var countCategories = await Category.estimatedDocumentCount();
-        if (countCategories == 0) await Category.insertMany(categories)
+        // var countCategories = await Category.estimatedDocumentCount();
+        // if (countCategories == 0) await Category.insertMany(categories)
+        // await Product.updateMany({}, {isDisabled: false})
     } catch (error) {
         return
     }

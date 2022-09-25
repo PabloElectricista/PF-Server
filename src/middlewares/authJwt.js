@@ -1,64 +1,33 @@
-import jwt from "jsonwebtoken";
-import { SECRET } from "../config.js";
 import User from "../models/User.js";
-import Role from "../models/Role.js";
 import jwt_decode from "jwt-decode";
 
 export const verifyToken = async (req, res, next) => {
-  let token = req.headers["x-access-token"];
-
+  let token = req.headers["credentials"];
   if (!token) return res.status(403).json({ message: "No token provided" });
 
   try {
-    var decoded, userId, email, user;
-    decoded = jwt_decode(token)
-    email = decoded.email;
-    user = await User.findOne({ email });
-
-    if (!user) {
-      decoded = jwt.verify(token, SECRET)
-      userId = decoded.id;
-      user = await User.findById(userId, { password: 0 });
-    }
+    const decoded = jwt_decode(token)
+    const email = decoded.email;
+    const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: "No user found" });
-
+    if (!user.isAdmin) return res.status(404).json({ message: "Require Admin Role!" });
     next();
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized!" });
   }
 };
 
-export const isModerator = async (req, res, next) => {
+export const verifyUser = async (req, res, next) => {
+  let token = req.headers["credentials"];
+  if (!token) return res.status(403).json({ message: "No token provided" });
+
   try {
-    const user = await User.findById(req.userId);
-    const roles = await Role.find({ _id: { $in: user.roles } });
-    for (let i = 0; i < roles.length; i++) {
-      if (roles[i].name === "moderator") {
-        next();
-        return;
-      }
-    }
-    return res.status(403).json({ message: "Require Moderator Role!" });
+    const decoded = jwt_decode(token)
+    const email = decoded.email;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: "No user found" });
+    next();
   } catch (error) {
-    return res.status(500).send({ message: error });
-  }
-};
-
-export const isAdmin = async (req, res, next) => {
-  try {
-    const user = await User.findById(req.userId);
-    const roles = await Role.find({ _id: { $in: user.roles } });
-
-    for (let i = 0; i < roles.length; i++) {
-      if (roles[i].name === "admin") {
-        next();
-        return;
-      }
-    }
-
-    return res.status(403).json({ message: "Require Admin Role!" });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).send({ message: error });
+    return res.status(401).json({ message: "Unauthorized!" });
   }
 };
