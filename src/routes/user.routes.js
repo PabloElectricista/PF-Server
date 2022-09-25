@@ -1,19 +1,18 @@
 import { Router } from "express";
-import { createUser } from "../controllers/user.controller.js";
-import { verifyToken } from "../middlewares/authJwt.js";
-import { checkExistingUser } from "../middlewares/verifySignup.js";
-import { getUser, getUsers, getUserEmail, putUser } from "../controllers/user.controller.js"
+import { verifyToken, verifyUser } from "../middlewares/authJwt.js";
+import { createUser, getUser, getUsers  } from "../controllers/user.controller.js"
+import { getUserEmail, putUser } from "../controllers/user.controller.js"
  
 const router = Router();
 
-router.get("/", getUsers)
+router.get("/", [verifyToken], getUsers)
 
-router.get("/byEmail/:email", getUserEmail)
+router.get("/byEmail/:email", [verifyToken], getUserEmail)
 
-router.get("/byId/:id", getUser)
+router.get("/byId/:id", [verifyToken], getUser)
 
 router.post("/", createUser);
 
-router.put("/", [verifyToken, checkExistingUser], putUser)
+router.put("/", [verifyUser], putUser)
 
 export default router;
