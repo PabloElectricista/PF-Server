@@ -1,4 +1,4 @@
-import {sendEmailShopping,sendClaimMail,autoClaimRes,sendAuthMail} from './generateNotifications.js'
+import {sendEmailShopping,sendClaimMail,autoClaimRes,sendAuthMail,sendErrorMail} from './generateNotifications.js'
 import Product from  '../../models/Product.js';
 
 export async function authMail(email,username){
@@ -10,6 +10,10 @@ export async function emailShopping(order){
     const{email,username}=buyer
     const productsName=products.map(p=>p.product.name).join(', ')
     await sendEmailShopping(email,username,productsName)
+}
+
+export async function errorMail(email,msg){
+    await sendErrorMail(email,msg)
 }
 
 

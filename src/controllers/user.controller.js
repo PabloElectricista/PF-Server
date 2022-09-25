@@ -36,7 +36,7 @@ export const createUser = async (req, res, next) => {
         await authMail(email, username)
         return res.status(200).json(savedUser);
     } catch (error) {
-        next(error)
+        return next(error)
     }
 };
 
@@ -55,7 +55,7 @@ export const getUser = async (req, res, next) => {
         const user = await User.findById(id);
         return res.json(user);
     } catch (error) {
-        next(error)
+        return next(error)
     }
 };
 
@@ -65,7 +65,7 @@ export const getUserEmail = async (req, res, next) => {
         const user = await User.find({ email: email })
         return res.json(user)
     } catch (error) {
-        next(error)
+        return next(error)
     }
 };
 
@@ -78,7 +78,7 @@ export const putUser = async (req, res, next) => {
         )
         return res.status(200).send("User updated!")
     } catch (error) {
-        next(error)
+        return next(error)
     }
 }
 
@@ -94,6 +94,6 @@ const checkExistingUser = async (username, email, next) => {
         if (emailfound) return emailfound
         else return []
     } catch (error) {
-        next(error)
+        return next(error)
     }
 };

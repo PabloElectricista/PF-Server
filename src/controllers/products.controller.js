@@ -14,7 +14,7 @@ export const createProduct = async (req, res, next) => {
         const productSaved = await newProduct.save();
         res.status(201).json(productSaved);
     } catch (error) {
-        next(error)
+        return next(error)
     }
 };
 
@@ -23,9 +23,11 @@ export const getProductById = async (req, res, next) => {
     const { productId } = req.params;
     const categories = await Product.find({}, { select: "category" }).distinct("category")
     let product = await Product.findById(productId);
+
+    
     res.status(200).json({ product, categorieslist: categories });
   }catch(error){
-    next(error)
+    return next(error)
   }
 };
 
@@ -91,7 +93,7 @@ export const getProducts = async (req, res, next) => {
     const price = [prices[0], prices[prices.length - 1]];
     return res.json({ products, count, brand, colors, price, categories });
   }catch(error){
-    next(error)
+    return next(error)
   }
 };
 
@@ -108,6 +110,6 @@ export const updateProductById = async (req, res, next) => {
         if (isDisabled) return res.send("product delected ok")
         else res.json(updatedProduct);
     } catch (error) {
-      next(error)
+      return next(error)
     }
 };

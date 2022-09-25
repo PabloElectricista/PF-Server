@@ -55,3 +55,12 @@ export async function sendAuthMail(email,username){
         text: `We welcome you to our page ${username}! Thank you for choosing us, here you can find the supplies you need at the best price`
     })
 }
+
+export async function sendErrorMail(email,msg){
+    await  transportator.sendMail({
+        from: 'hardwarehotsales@gmail.com',
+        to: email,
+        subject: "Error",
+        text: msg
+    })
+}

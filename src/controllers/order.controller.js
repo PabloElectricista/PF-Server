@@ -17,7 +17,7 @@ export const postOrders = async (req,res,next)=>{
         await emailShopping(orderSaved,userBuyer)
         res.json("Order loaded!").status(201)
     }catch(error){
-        next(error)
+        return next(error)
     }
 }
 async function updateStockAndGetProducts(products){
@@ -37,7 +37,7 @@ export const getOrders = async(req,res,next)=>{
         const orders = await Order.find().sort({"createdAt":"desc"});
         res.status(201).send(orders)
     }catch(error){  
-        next(error)
+        return next(error)
     }
 }
 
@@ -49,7 +49,7 @@ export const putOrder= async (req,res,next)=>{
         await currentOrder.save();
         res.status(200).send(currentOrder)
     }catch(error){
-        next(error)
+        return next(error)
     }
 }
 
@@ -61,6 +61,6 @@ export const orderByUser=async (req,res,next)=>{
         console.log(currentUser.shopping)
         res.send(currentUser.shopping)
     }catch(error){
-        next(error)
+        return next(error)
     }
 }

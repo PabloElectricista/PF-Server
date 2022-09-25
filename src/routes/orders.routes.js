@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {postOrders, getOrders,putOrder,orderByUser} from "../controllers/order.controller.js"
 import { verifyToken, verifyUser } from "../middlewares/authJwt.js";
+
 const router=Router();
 
 router.post('/', [verifyUser], postOrders)

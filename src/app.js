@@ -4,6 +4,9 @@ import morgan from "morgan";
 import helmet from "helmet";
 import fileUpload from "express-fileupload"
 import initialfunction from "./libs/initialfunction.js"
+import jwt_decode from "jwt-decode";
+import {errorMail} from './controllers/nodemailer/send-mail.js'
+
 // Routes
 import indexRoutes from "./routes/index.routes.js";
 
@@ -15,7 +18,6 @@ app.set("json spaces", 4);
 
 // Middlewares
 app.use(cors());
-
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
@@ -25,16 +27,19 @@ app.use(fileUpload({
 }));
 app.use(express.urlencoded({ extended: false }));
 
-
-
 // Routes
 app.use("/api", indexRoutes);
 
-app.use((error, req, res, next)=>{
-  const {status, message} = error;
-  console.log(`error: ${error}`)
-  //console.log(res)
-  res.status(status).send(message)
+app.use(async (error, req, res, next)=>{
+  const {status,message} = error;
+  console.log(req.body)
+  const token = req.headers["credentials"];
+
+  const decoded = jwt_decode(token)
+  
+  await errorMail(decoded.email, message)
+  res.status(status||500).send({message})
+
 })
 
 export default app;
