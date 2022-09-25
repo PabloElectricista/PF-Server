@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema(
         ref: "Role",
       }
     ],
-    shopping:[{
+    shopping: [{
       type: mongoose.Schema.Types.ObjectId,
       ref:"Order"
     }],
@@ -39,12 +39,54 @@ const productSchema = new mongoose.Schema(
     isBlocked: {
       type: Boolean,
       default: false
+    },
+    firstName: {
+      type: String
+    },
+    lastName: {
+      type:String
+    },
+    phone: {
+      type: Number
+    },
+    identificationnumber:{
+      type: Number
+    },
+    address: {
+      type: String
+    },
+    addressnumber: {
+      type: Number
+    },
+    floor:{
+      type: Number
+    },
+    department: {
+      type: String
+    },
+    zipcode: {
+      type: Number
+    },
+    city: {
+      type: String
+    },
+    zipcode: {
+      type: Number
+    },
+    city:{
+      type: String
+    },
+    state:{
+      type: String
+    },
+    country:{
+      type: String
     }
   },
   {
     timestamps: true,
     versionKey: false,
-  }
+  },
 );
 
 

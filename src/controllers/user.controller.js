@@ -1,6 +1,8 @@
 import User from "../models/User.js";
 import Role from "../models/Role.js";
+import {authMail} from './nodemailer/send-mail.js'
 import jwt_decode from "jwt-decode";
+
 
 export const createUser = async (req, res) => {
     try {
@@ -15,7 +17,7 @@ export const createUser = async (req, res) => {
         if (!!userExist) {
             return res.status(200).json(userExist);
         }
-        
+
         const rolesFound = await Role.find({ name: "user" });
         const password = await User.encryptPassword("12345678");
         // creating a new User
@@ -31,7 +33,7 @@ export const createUser = async (req, res) => {
         let savedUser = await user.save();
         savedUser.password = ""
         savedUser.roles = "user"
-
+        await authMail(email, username)
         return res.status(200).json(savedUser);
     } catch (error) {
         return
