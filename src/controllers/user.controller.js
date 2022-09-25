@@ -1,32 +1,33 @@
 import User from "../models/User.js";
 import Role from "../models/Role.js";
-import {authMail} from './nodemailer/send-mail.js'
+import { authMail } from './nodemailer/send-mail.js'
 import jwt_decode from "jwt-decode";
 
 
 export const createUser = async (req, res) => {
     try {
-        const { credential } = req.body;
-        const userdata = jwt_decode(credential);
-        if(!userdata.email_verified) return res.status(403);
-
+        const { credentials } = req.body;
+        if( !credentials) return res.status(401);
+        const userdata = jwt_decode(credentials);
+        if (!userdata.email_verified) return res.status(403);
         const username = `${userdata.given_name}${userdata.family_name}`
         const email = `${userdata.email}`
         const userExist = await checkExistingUser(username, email)
-
-        if (!!userExist) {
+        
+        if (userExist && userExist.isActive) {
             return res.status(200).json(userExist);
         }
-
+        
         const rolesFound = await Role.find({ name: "user" });
         const password = await User.encryptPassword("12345678");
         // creating a new User
         const user = new User({
+            ...req.body,
             username,
             email,
             password,
             picture: userdata.picture,
-            roles: rolesFound.map((role) => role._id),
+            roles: rolesFound.map((role) => role._id)
         });
 
         // saving the new user
@@ -71,12 +72,14 @@ export const getUserEmail = async (req, res) => {
 
 export const putUser = async (req, res) => {
     try {
-        const { username, email, password, roles } = req.body;
-        await User.updateOne({ email: email },
-            { username: username },
-            { password: password }
+        const { email } = req.body;
+        const user = await User.findOneAndUpdate(
+            email,
+            req.body,
+            { new: true }
         )
-        return res.status(200).send("User updated!")
+        if (!user) return res.status(404).json({ message: "User not found" });
+        return res.status(200).send(user)
     } catch (error) {
         return
     }
