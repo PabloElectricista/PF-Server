@@ -25,7 +25,16 @@ app.use(fileUpload({
 }));
 app.use(express.urlencoded({ extended: false }));
 
+
+
 // Routes
 app.use("/api", indexRoutes);
+
+app.use((error, req, res, next)=>{
+  const {status, message} = error;
+  console.log(`error: ${error}`)
+  //console.log(res)
+  res.status(status).send(message)
+})
 
 export default app;
