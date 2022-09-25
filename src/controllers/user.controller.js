@@ -6,9 +6,9 @@ import jwt_decode from "jwt-decode";
 
 export const createUser = async (req, res) => {
     try {
-        const { credentials } = req.body;
-        if( !credentials) return res.status(401);
-        const userdata = jwt_decode(credentials);
+        const { credential } = req.body;
+        if( !credential) return res.status(401);
+        const userdata = jwt_decode(credential);
         if (!userdata.email_verified) return res.status(403);
         const username = `${userdata.given_name}${userdata.family_name}`
         const email = `${userdata.email}`

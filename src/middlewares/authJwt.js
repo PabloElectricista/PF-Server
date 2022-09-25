@@ -2,7 +2,7 @@ import User from "../models/User.js";
 import jwt_decode from "jwt-decode";
 
 export const verifyToken = async (req, res, next) => {
-  let token = req.headers["credentials"];
+  let token = req.headers["credential"];
   if (!token) return res.status(403).json({ message: "No token provided" });
 
   try {
@@ -18,7 +18,7 @@ export const verifyToken = async (req, res, next) => {
 };
 
 export const verifyUser = async (req, res, next) => {
-  let token = req.headers["credentials"];
+  let token = req.headers["credential"];
   if (!token) return res.status(403).json({ message: "No token provided" });
 
   try {
