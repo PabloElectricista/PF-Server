@@ -75,7 +75,7 @@ function combinedFilters(conditions){
 } */
 
 export const getProducts = async (req, res) => {
-  const { start, order, ...conditionByQuery } = req.query;
+  const { start, order, limit, ...conditionByQuery } = req.query;
   var field, by;
   if(order) [field, by] = order.split('/');
   const condition = await combinedFilters(conditionByQuery);
@@ -83,15 +83,15 @@ export const getProducts = async (req, res) => {
   var count = await Product.countDocuments(condition)
   var products;
   if (order) products = await Product.find(condition).sort({ [field]: by}).skip(index).limit(9);
-  else products = await Product.find(condition).skip(index).limit(9);
+  else products = await Product.find(condition).skip(index).limit(limit||9);
   const brand = await Product.find(condition, { select: "brand" }).distinct("brand");
   const categories = await Product.find(condition, { select: "category"}).distinct("category")
   const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
   const result = await Product.find(condition, { select: "price" }).distinct("price")
-
+  const currentProducts= products.filter(p=>!p.isDisabled)
   const prices = result.sort((a, b) => a - b);
   const price = [prices[0], prices[prices.length - 1]];
-  return res.json({ products, count, brand, colors, price, categories });
+  return res.json({ product:currentProducts, count, brand, colors, price, categories });
 };
 
 export const updateProductById = async (req, res) => {
