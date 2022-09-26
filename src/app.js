@@ -36,8 +36,8 @@ app.use(async (error, req, res, next)=>{
   const token = req.headers["credentials"];
 
   const decoded = jwt_decode(token)
+  if(decoded) await errorMail(decoded.email, message)
   
-  await errorMail(decoded.email, message)
   res.status(status||500).send({message})
 
 })

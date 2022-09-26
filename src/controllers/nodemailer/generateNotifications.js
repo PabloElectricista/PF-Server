@@ -15,13 +15,13 @@ export async function sendEmailShopping(emailBuyer,usernameBuyer,nameProducts){
         }
     }) 
 }
-export async function sendClaimMail(msg,service,email){
-    console.log({msg,service,email})
+export async function sendClaimMail(message,subject,email){
+    //console.log({msg,service,email}) sender
     await transportator.sendMail({
         from: email,
         to: 'hardwarehotsales@gmail.com',
-        subject: service,
-        text: `${msg} \n ${email}`
+        subject: subject,
+        text: `${message} \n ${email}`
     },
     (error,info)=>{
         if(error){
@@ -31,12 +31,12 @@ export async function sendClaimMail(msg,service,email){
         }
     })
 }
-export async function autoClaimRes(username,email,service){
+export async function autoClaimRes(email,subject){
     await transportator.sendMail({
         from: 'hardwarehotsales@gmail.com',
         to: email,
-        subject: service,
-        text: `Hello ${username}! Your claim will be answered shortly, thank you for informing us of your problem.`
+        subject: subject,
+        text: `Hello! Your claim will be answered shortly, thank you for informing us of your problem.`
     },
     (error,info)=>{
         if(error){
