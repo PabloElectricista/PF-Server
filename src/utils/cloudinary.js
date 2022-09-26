@@ -13,3 +13,4 @@ export async function uploadImage(filePath) {
         folder: "Ecommerce"
     })
 }
+
