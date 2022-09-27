@@ -4,7 +4,7 @@ import { authMail } from './nodemailer/send-mail.js'
 import jwt_decode from "jwt-decode";
 
 
-export const createUser = async (req, res) => {
+export const createUser = async (req, res, next) => {
     try {
         const { credential } = req.body;
         if( !credential) return res.status(401);
@@ -37,40 +37,40 @@ export const createUser = async (req, res) => {
         await authMail(email, username)
         return res.status(200).json(savedUser);
     } catch (error) {
-        return
+        return next(error)
     }
 };
 
-export const getUsers = async (req, res) => {
+export const getUsers = async (req, res, next) => {
     try {
         const users = await User.find();
         return res.json(users);
     } catch (error) {
-        return
+        next(error)
     }
 };
 
-export const getUser = async (req, res) => {
+export const getUser = async (req, res, next) => {
     try {
         const { id } = req.params
         const user = await User.findById(id);
         return res.json(user);
     } catch (error) {
-        return
+        return next(error)
     }
 };
 
-export const getUserEmail = async (req, res) => {
+export const getUserEmail = async (req, res, next) => {
     try {
         const { email } = req.params
         const user = await User.find({ email: email })
         return res.json(user)
     } catch (error) {
-        return
+        return next(error)
     }
 };
 
-export const putUser = async (req, res) => {
+export const putUser = async (req, res, next) => {
     try {
         const { email } = req.body;
         const user = await User.findOneAndUpdate(
@@ -81,11 +81,11 @@ export const putUser = async (req, res) => {
         if (!user) return res.status(404).json({ message: "User not found" });
         return res.status(200).send(user)
     } catch (error) {
-        return
+        return next(error)
     }
 }
 
-const checkExistingUser = async (username, email) => {
+const checkExistingUser = async (username, email, next) => {
     try {
         const userFound = await User.findOne({ username })
             .select('-password')
@@ -97,6 +97,6 @@ const checkExistingUser = async (username, email) => {
         if (emailfound) return emailfound
         else return []
     } catch (error) {
-        return error.message;
+        return next(error)
     }
 };
