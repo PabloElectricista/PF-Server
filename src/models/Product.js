@@ -1,4 +1,4 @@
-import { model, Schema } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 
 const productSchema = new Schema(
     {
@@ -39,8 +39,13 @@ const productSchema = new Schema(
         isDisabled:{
             type: Boolean,
             default:false
-        }
-        // reviews: [reviewSchema]
+        },
+        reviews: [
+            {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Review"
+            }
+        ]
     },
     {
         timestamps: true,
