@@ -3,7 +3,7 @@ import User from "../models/User.js";
 import Role from "../models/Role.js";
 import { SECRET } from "../config.js";
 
-export const signupHandler = async (req, res) => {
+export const signupHandler = async (req, res, next) => {
   try {
     const { username, email, password, roles } = req.body;
 
@@ -33,11 +33,11 @@ export const signupHandler = async (req, res) => {
 
     return res.status(200).json({ token });
   } catch (error) {
-    return res.status(500).json(error.message);
+    return next(error)
   }
 };
 
-export const signinHandler = async (req, res) => {
+export const signinHandler = async (req, res, next) => {
   try {
     // Request body email can be an email or username
     const userFound = await User.findOne({ email: req.body.email }).populate(
@@ -63,6 +63,6 @@ export const signinHandler = async (req, res) => {
 
     res.json({ token });
   } catch (error) {
-    console.log(error);
+    next(error)
   }
 };

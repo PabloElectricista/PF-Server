@@ -3,7 +3,7 @@ import Product from "../models/Product.js";
 import { uploadImage } from "../utils/cloudinary.js";
 import fs from "fs-extra";
 
-export const createProduct = async (req, res) => {
+export const createProduct = async (req, res, next) => {
     try {
         const newProduct = new Product(req.body);
         if (req.files?.images) {
@@ -16,15 +16,21 @@ export const createProduct = async (req, res) => {
         const productSaved = await newProduct.save();
         res.status(201).json(productSaved);
     } catch (error) {
-        return res.status(500).json(error);
+        return next(error)
     }
 };
 
-export const getProductById = async (req, res) => {
+export const getProductById = async (req, res, next) => {
+  try{
     const { productId } = req.params;
     const categories = await Product.find({}, { select: "category" }).distinct("category")
     let product = await Product.findById(productId);
+
+    
     res.status(200).json({ product, categorieslist: categories });
+  }catch(error){
+    return next(error)
+  }
 };
 
 function combinedFilters(conditions) {
@@ -69,7 +75,8 @@ function combinedFilters(conditions) {
   return {...props,status:["New","Used"]};
 } */
 
-export const getProducts = async (req, res) => {
+export const getProducts = async (req, res, next) => {
+  try{
     const { start, order, limit, ...conditionByQuery } = req.query;
     var field, by;
     if (order) [field, by] = order.split('/');
@@ -87,9 +94,12 @@ export const getProducts = async (req, res) => {
     const prices = result.sort((a, b) => a - b);
     const price = [prices[0], prices[prices.length - 1]];
     return res.json({ products, count, brand, colors, price, categories });
+  }catch(error){
+    return next(error)
+  }
 };
 
-export const updateProductById = async (req, res) => {
+export const updateProductById = async (req, res, next) => {
     const { isDisabled } = req.body;
     try {
         const updatedProduct = await Product.findByIdAndUpdate(
@@ -102,6 +112,6 @@ export const updateProductById = async (req, res) => {
         if (isDisabled) return res.send("product delected ok")
         else res.json(updatedProduct);
     } catch (error) {
-        res.send(error.message || error);
+      return next(error)
     }
 };

@@ -2,7 +2,7 @@ import Order from '../models/Order.js'
 import User from '../models/User.js'
 import Product from '../models/Product.js'
 import {emailShopping} from './nodemailer/send-mail.js'
-export const postOrders = async (req,res)=>{
+export const postOrders = async (req,res,next)=>{
     try{
         const {buyer_id,products}=req.body;
         const userBuyer=await User.findById(buyer_id).populate("shopping")
@@ -17,7 +17,7 @@ export const postOrders = async (req,res)=>{
         await emailShopping(orderSaved,userBuyer)
         res.json("Order loaded!").status(201)
     }catch(error){
-        res.status(500).json(error)
+        return next(error)
     }
 }
 async function updateStockAndGetProducts(products){
@@ -32,16 +32,16 @@ async function updateStockAndGetProducts(products){
     return productsToOrder
 }
 
-export const getOrders = async(req,res)=>{
+export const getOrders = async(req,res,next)=>{
     try{
         const orders = await Order.find().sort({"createdAt":"desc"});
         res.status(201).send(orders)
     }catch(error){  
-        res.status(404).json(error)
+        return next(error)
     }
 }
 
-export const putOrder= async (req,res)=>{
+export const putOrder= async (req,res,next)=>{
     try{
         const {id}=req.params
         const {update}=req.body;
@@ -49,11 +49,11 @@ export const putOrder= async (req,res)=>{
         await currentOrder.save();
         res.status(200).send(currentOrder)
     }catch(error){
-        res.status(500).json(error)
+        return next(error)
     }
 }
 
-export const orderByUser=async (req,res)=>{
+export const orderByUser=async (req,res,next)=>{
     try{
         const {userId}=req.params;
         const currentUser = await User.findById(userId).populate("shopping")
@@ -61,6 +61,6 @@ export const orderByUser=async (req,res)=>{
         console.log(currentUser.shopping)
         res.send(currentUser.shopping)
     }catch(error){
-        res.status(500).send(error)
+        return next(error)
     }
 }
