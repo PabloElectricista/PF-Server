@@ -109,9 +109,50 @@ export const updateProductById = async (req, res, next) => {
                 new: true,
             }
         );
-        if (isDisabled) return res.send("product delected ok")
+        if (isDisabled) return res.send("Product deleted ok")
         else res.json(updatedProduct);
     } catch (error) {
       return next(error)
     }
 };
+
+export const createProductReview = async (req, res, next) => {
+  const { rating, comment } = req.body;
+  const productId = req.params.id;
+  // console.log(req.user._id.toString(), "???")
+  try {
+    const product = await Product.findById(productId);
+  
+  if (product) {
+      const alReadyReviewed = product.reviews.find((x) => x.user.toString() === req.user._id.toString());
+      
+      if (alReadyReviewed) {
+        res.status(400)
+        throw new Error("Product already reviewed")
+      };
+      
+      const review = {
+        name: req.user.username,
+        rating: Number(rating),
+        comment,
+        user: req.user._id.toString()
+      };
+
+      product.reviews.push(review);
+
+      product.numReviews = product.reviews.length;
+
+      product.rating = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length;
+
+      await product.save()
+
+      res.status(200).json({message: "Review added"})
+    } else {
+      res.status(404)
+      throw new Error("Product not found")
+    }
+  } catch (error) {
+    return next(error)
+  }
+  
+}
