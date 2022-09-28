@@ -36,9 +36,11 @@ function combinedFilters(conditions) {
     for (const prop in conditions) {
         if (prop == "price") {
             let [min, max] = conditions[prop].split('/') //price?min/max desde el front
-            conditionSearch[prop] = {
+            if(!isNaN(min)&&!isNaN(max)){
+              conditionSearch[prop] = {
                 $lte: parseInt(max),
                 $gte: parseInt(min)
+              }
             }
         } else
             conditionSearch[prop] = new RegExp(conditions[prop], "i")
@@ -88,10 +90,11 @@ export const getProducts = async (req, res, next) => {
     const brand = await Product.find(condition, { select: "brand" }).distinct("brand");
     const categories = await Product.find(condition, { select: "category" }).distinct("category")
     const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
-    const result = await Product.find(condition, { select: "price" }).distinct("price")
+    const result = await Product.find(condition, { select: "price" }).distinct("price");
     const prices = result.sort((a, b) => a - b);
     const price = [prices[0], prices[prices.length - 1]];
-    return res.json({ products, count, brand, colors, price, categories });
+    const status = await Product.find(condition, { select: "status" }).distinct("status")
+    return res.json({ products, count, brand, colors, price, categories, status });
   }catch(error){
     return next(error)
   }

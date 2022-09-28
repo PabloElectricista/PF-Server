@@ -34,7 +34,9 @@ async function updateStockAndGetProducts(products){
 
 export const getOrders = async(req,res,next)=>{
     try{
-        const orders = await Order.find().sort({"createdAt":"desc"});
+    // products = await Product.find(condition).skip(index).limit(limit || 9);
+        const {start}=req.query
+        const orders = await Order.find().populate("buyer").skip(start).limit(20).sort({"createdAt":"desc"});
         res.status(201).send(orders)
     }catch(error){  
         return next(error)

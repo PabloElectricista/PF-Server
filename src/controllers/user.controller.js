@@ -42,12 +42,15 @@ export const createUser = async (req, res, next) => {
 
 export const getUsers = async (req, res, next) => {
     try {
-        const users = await User.find();
+        const {start}= req.query
+        const users = await User.find().skip(start).limit(20);
+        console.log(users.length)
         return res.json(users);
     } catch (error) {
         next(error)
     }
 };
+// products = await Product.find(condition).skip(index).limit(limit || 9);
 
 export const getUser = async (req, res, next) => {
     try {

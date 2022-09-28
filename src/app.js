@@ -31,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api", indexRoutes);
 
 app.use(async (error, req, res, next)=>{
+  
   const {status,message} = error;
   console.log(req.body)
   const token = req.headers["credentials"];
