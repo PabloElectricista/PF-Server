@@ -9,6 +9,7 @@ export const verifyToken = async (req, res, next) => {
     const decoded = jwt_decode(token)
     const email = decoded.email;
     const user = await User.findOne({ email });
+    req.user = user
     if (!user) return res.status(404).json({ message: "No user found" });
     if (!user.isAdmin) return res.status(404).json({ message: "Require Admin Role!" });
     next();
