@@ -45,8 +45,8 @@ export const getUsers = async (req, res, next) => {
     try {
         const {start}= req.query
         const users = await User.find().skip(start).limit(20);
-        console.log(users.length)
-        return res.json(users);
+        const count = await User.countDocuments();
+        return res.json({users,count});
     } catch (error) {
         next(error)
     }

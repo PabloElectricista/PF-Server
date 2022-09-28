@@ -35,10 +35,11 @@ async function updateStockAndGetProducts(products){
 export const getOrders = async(req,res,next)=>{
     try{
         const {start}=req.query
+        const count = await Order.estimatedDocumentCount()
         const limit = 20
         const index = parseInt(start) * limit
         const orders = await Order.find().populate("buyer").skip(index).limit(limit).sort({"createdAt":"desc"});
-        res.status(201).send(orders)
+        res.status(201).send({orders,count})
     }catch(error){  
         return next(error)
     }
