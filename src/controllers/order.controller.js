@@ -37,6 +37,7 @@ export const getOrders = async(req,res,next)=>{
     // products = await Product.find(condition).skip(index).limit(limit || 9);
         const {start}=req.query
         const orders = await Order.find().populate("buyer").skip(start).limit(20).sort({"createdAt":"desc"});
+        const count = await Order.estimatedDocumentCount()
         res.status(201).send(orders)
     }catch(error){  
         return next(error)
