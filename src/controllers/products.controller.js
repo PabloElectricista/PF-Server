@@ -139,6 +139,7 @@ export const createProductReview = async (req, res, next) => {
       const reviewSaved = await review.save()
       product.all_reviews.push(reviewSaved);
       await product.save()
+      console.log(product.numReviews)
       res.status(200).json({message: "Review added"})
     } else {
       res.status(404)

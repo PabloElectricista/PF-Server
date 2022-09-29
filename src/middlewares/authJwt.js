@@ -27,6 +27,7 @@ export const verifyUser = async (req, res, next) => {
     const email = decoded.email;
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: "No user found" });
+    req.user = user
     next();
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized!" });
