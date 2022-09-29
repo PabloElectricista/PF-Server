@@ -1,9 +1,9 @@
-import mongoose, { model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
 const reviewSchema = new Schema(
     {
         user: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "User",
             require: true
         },
@@ -25,4 +25,4 @@ const reviewSchema = new Schema(
     }
 );
 
-// export default mongoose.model("Review", reviewSchema)
+ export default model("Review", reviewSchema)

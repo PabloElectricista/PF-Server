@@ -1,4 +1,5 @@
 import Product from "../models/Product.js";
+import Review from "../models/Reviews.js";
 // import User from "../models/User.js";
 import { uploadImage } from "../utils/cloudinary.js";
 import fs from "fs-extra";
@@ -122,33 +123,23 @@ export const updateProductById = async (req, res, next) => {
 export const createProductReview = async (req, res, next) => {
   const { rating, comment } = req.body;
   const productId = req.params.id;
-  // console.log(req.user._id.toString(), "???")
   try {
-    const product = await Product.findById(productId);
-  
-  if (product) {
-      const alReadyReviewed = product.reviews.find((x) => x.user.toString() === req.user._id.toString());
-      
+    const product = await Product.findById(productId).populate("all_reviews");
+    if (product) {
+      const alReadyReviewed = product.all_reviews.length>0?product.all_reviews.find((x) => x.user.toString() === req.user._id.toString()):null;  
       if (alReadyReviewed) {
-        res.status(400)
-        throw new Error("Product already reviewed")
+        return res.status(400).send("Product already reviewed")
       };
-      
-      const review = {
+      const review = await Review.create({
         name: req.user.username,
         rating: Number(rating),
         comment,
-        user: req.user._id.toString()
-      };
-
-      product.reviews.push(review);
-
-      product.numReviews = product.reviews.length;
-
-      product.rating = product.reviews.reduce((acc, item) => item.rating + acc, 0) / product.reviews.length;
-
+        user: req.user
+      });
+      const reviewSaved = await review.save()
+      product.all_reviews.push(reviewSaved);
       await product.save()
-
+      console.log(product.numReviews)
       res.status(200).json({message: "Review added"})
     } else {
       res.status(404)
