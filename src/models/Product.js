@@ -39,8 +39,30 @@ const productSchema = new Schema(
         isDisabled:{
             type: Boolean,
             default:false
+        },
+        all_reviews: [{
+            type: Schema.Types.ObjectId,
+            ref:"Review"
+            //default:[]
+        }],
+        numReviews:{
+            type: Number,
+            default: function(){ 
+                return this.all_reviews.length
+            }
+        },
+        rating:{
+            type: Number,
+            default : function(){
+                let result=0;
+                if(this.all_reviews.length>0) {
+                    let aux =this.all_reviews.reduce((acc, item) => item.rating + acc, 0)
+                    result= aux / this.all_reviews.length;
+                }
+                console.log(result)
+                return result
+            }
         }
-        // reviews: [reviewSchema]
     },
     {
         timestamps: true,

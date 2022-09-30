@@ -1,15 +1,19 @@
-import { Router } from "express";
-import {postOrders, getOrders,putOrder,orderByUser} from "../controllers/order.controller.js"
+import {Router} from "express";
+import Order from "../models/Order.js";
+import {postOrders, getOrders,putOrder,orderByUser,orderById} from "../controllers/order.controller.js"
 import { verifyToken, verifyUser } from "../middlewares/authJwt.js";
 
-const router=Router();
+const router = Router();
 
-router.post('/', [verifyUser], postOrders)
 
-router.get('/', [verifyToken], getOrders)
+router.get("/",[verifyToken], getOrders)
+  
+router.get('/user/:userId', [verifyToken], orderByUser)
 
-router.put('/:id', [verifyUser], putOrder)
+router.get("/:id",[verifyToken], orderById) 
 
-router.get('/user/:userId', [verifyUser], orderByUser)
+router.post("/",[verifyUser],postOrders)
+
+router.put('/:id/pay', [verifyToken], putOrder)
 
 export default router;

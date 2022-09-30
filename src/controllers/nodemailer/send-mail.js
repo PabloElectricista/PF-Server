@@ -1,15 +1,22 @@
 import {sendEmailShopping,sendClaimMail,autoClaimRes,sendAuthMail,sendErrorMail} from './generateNotifications.js'
 import Product from  '../../models/Product.js';
+import User from '../../models/User.js';
 
 export async function authMail(email,username){
     await sendAuthMail(email,username)
 }
 
 export async function emailShopping(order){
-    const {buyer, products}=order
-    const{email,username}=buyer
-    const productsName=products.map(p=>p.product.name).join(', ')
-    await sendEmailShopping(email,username,productsName)
+    try{
+        const {user, orderItems}=order
+        const userBuyer= await User.findById(user)
+        const{email,username}=userBuyer
+        const productsName=orderItems.map(p=>p.name).join(', ')
+        await sendEmailShopping(email,username,productsName)
+        res.status(200).json({"messaje":"send mail!"})
+    }catch(error){
+        next(error)
+    }
 }
 
 export async function errorMail(email,msg){
