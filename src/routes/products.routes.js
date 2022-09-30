@@ -4,8 +4,7 @@ import {
   createProduct,
   updateProductById,
   getProductById,
-  createProductReview,
-  getReviews
+  createProductReview
 } from "../controllers/products.controller.js";
 import { verifyToken, verifyUser } from "../middlewares/authJwt.js";
 
@@ -21,5 +20,4 @@ router.post("/:id/reviews", [verifyUser], createProductReview)
 
 router.put("/:productId", [verifyToken], updateProductById);
 
-router.get('/review/:id',getReviews)
 export default router;

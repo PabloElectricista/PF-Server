@@ -150,12 +150,3 @@ export const createProductReview = async (req, res, next) => {
   }
   
 }
-
-export const getReviews= async (req,res,next)=>{
-  try{
-    const reviews = await Product.findById(req.params.id).populate("all_reviews");
-    res.json(reviews)
-  }catch(error){
-    next(error)
-  }
-}
