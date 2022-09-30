@@ -8,7 +8,7 @@ const router = Router();
 
 router.get("/",[verifyToken], getOrders)
   
-router.get('/user/:userId', [verifyUser], orderByUser)
+router.get('/user/:userId', [verifyToken], orderByUser)
 
 router.get("/:id",[verifyToken], orderById) 
 

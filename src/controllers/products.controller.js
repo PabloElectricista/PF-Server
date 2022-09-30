@@ -128,22 +128,22 @@ export const createProductReview = async (req, res, next) => {
     if (product) {
       const alReadyReviewed = product.all_reviews.length>0?product.all_reviews.find((x) => x.user.toString() === req.user._id.toString()):null;  
       if (alReadyReviewed) {
-        return res.status(400).send("Product already reviewed")
+        return res.status(400).send({"error":"Product already reviewed"})
       };
-      const review = await Review.create({
+      const review = new Review({
         name: req.user.username,
         rating: Number(rating),
         comment,
         user: req.user
       });
-      const reviewSaved = await review.save()
+      console.log(`Llegué review ${review}`);
+      const reviewSaved = await review.save();
       product.all_reviews.push(reviewSaved);
-      await product.save()
-      console.log(product.numReviews)
-      res.status(200).json({message: "Review added"})
+      await product.save((err)=>err?console.log(err):null);
+      console.log(`llegué product ${product}`);
+      res.status(200).json({message: "Review added"});
     } else {
-      res.status(404)
-      throw new Error("Product not found")
+      return res.status(404).json({"error":"Product not found"})
     }
   } catch (error) {
     return next(error)
