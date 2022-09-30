@@ -47,14 +47,20 @@ const productSchema = new Schema(
         }],
         numReviews:{
             type: Number,
-            default: function(){
+            default: function(){ 
                 return this.all_reviews.length
             }
         },
         rating:{
             type: Number,
             default : function(){
-                return this.all_reviews.reduce((acc, item) => item.rating + acc, 0) / product.all_reviews.length;
+                let result=0;
+                if(this.all_reviews.length>0) {
+                    let aux =this.all_reviews.reduce((acc, item) => item.rating + acc, 0)
+                    result= aux / this.all_reviews.length;
+                }
+                console.log(result)
+                return result
             }
         }
     },
