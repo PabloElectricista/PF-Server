@@ -17,5 +17,6 @@ router.use("/users", usersRoutes);
 
 router.use("/orders", orderRouter)
 
-router.use("/mail",nodemailerRoutes)
+router.use("/mail", nodemailerRoutes);
+
 export default router
