@@ -17,6 +17,7 @@ export const postOrders = async (req,res,next)=>{
           user: userBuyer._id,
         });
         const orderSaved = await newOrder.save();
+        console.log(`orderSaved---->${orderSaved}`)
         userBuyer.shopping.push(orderSaved);
         await userBuyer.save();
         await emailShopping(orderSaved)

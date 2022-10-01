@@ -13,10 +13,10 @@ export async function emailShopping(order){
         const{email,username}=userBuyer
         const productsName=orderItems.map(p=>p.name).join(', ')
         await sendEmailShopping(email,username,productsName)
-        res.status(200).json({"messaje":"send mail!"})
     }catch(error){
-        next(error)
+        return error
     }
+        
 }
 
 export async function errorMail(email,msg){
