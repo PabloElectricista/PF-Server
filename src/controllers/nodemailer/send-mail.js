@@ -7,15 +7,10 @@ export async function authMail(email,username){
 }
 
 export async function emailShopping(order,userBuyer){
-    try{
-        const {orderItems}=order
-        const{email,username}=userBuyer
-        const productsName=orderItems.map(p=>p.name).join(', ')
-        await sendEmailShopping(email,username,productsName)
-    }catch(error){
-        return error
-    }
-        
+    const {orderItems}=order
+    const{email,username}=userBuyer
+    const productsName=orderItems.map(p=>p.name).join(', ')
+    await sendEmailShopping(email,username,productsName) 
 }
 
 export async function errorMail(email,msg){
