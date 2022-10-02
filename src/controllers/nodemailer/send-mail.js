@@ -6,10 +6,9 @@ export async function authMail(email,username){
     await sendAuthMail(email,username)
 }
 
-export async function emailShopping(order){
+export async function emailShopping(order,userBuyer){
     try{
-        const {user, orderItems}=order
-        const userBuyer= await User.findById(user)
+        const {orderItems}=order
         const{email,username}=userBuyer
         const productsName=orderItems.map(p=>p.name).join(', ')
         await sendEmailShopping(email,username,productsName)
