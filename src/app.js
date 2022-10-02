@@ -33,8 +33,7 @@ app.use("/api", indexRoutes);
 app.use(async (error, req, res, next)=>{
   
   const {status,message} = error;
-  console.log(req.body)
-  const token = req.headers["credentials"];
+  const token = req.headers["credential"];
 
   const decoded = jwt_decode(token)
   if(decoded) await errorMail(decoded.email, message)

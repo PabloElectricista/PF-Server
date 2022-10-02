@@ -19,8 +19,6 @@ export async function errorMail(email,msg){
 
 export async function emailClaim(req,res){
     try{
-
-        console.log(req)
         const {message,subject,email}=req.body
         await sendClaimMail(message,subject,email)
         await autoClaimRes(email,subject)
