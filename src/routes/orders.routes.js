@@ -16,8 +16,6 @@ router.post("/",[verifyUser],postOrders)
 
 router.put('/:id/pay', [verifyUser], putOrder)
 
-router.get('/keys/paypal', (req, res) => {
-    res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
-  });
-  
+
+
 export default router;
