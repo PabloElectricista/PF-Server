@@ -17,10 +17,10 @@ export const postOrders = async (req,res,next)=>{
           user: userBuyer._id,
         });
         const orderSaved = await newOrder.save();
-        console.log(`orderSaved---->${orderSaved}`)
+        //console.log(`orderSaved---->${orderSaved}`)
         userBuyer.shopping.push(orderSaved);
-        await userBuyer.save();
-        await emailShopping(orderSaved)
+        const savedUser=await userBuyer.save();
+        await emailShopping(orderSaved,savedUser)
         res.status(201).json({ message: "New Order Created", order:orderSaved });
     } catch (error) {
       return next(error)
