@@ -59,7 +59,6 @@ const productSchema = new Schema(
                     let aux =this.all_reviews.reduce((acc, item) => item.rating + acc, 0)
                     result= aux / this.all_reviews.length;
                 }
-                console.log(result)
                 return result
             }
         }
