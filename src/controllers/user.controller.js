@@ -44,7 +44,7 @@ export const createUser = async (req, res, next) => {
 export const getUsers = async (req, res, next) => {
     try {
         const {start}= req.query
-        const index = start * limit+1
+        const index = start * 20 +1
         const users = await User.find().skip(index).limit(20).populate("shopping");
         const count = await User.countDocuments();
         return res.json({users,count});
