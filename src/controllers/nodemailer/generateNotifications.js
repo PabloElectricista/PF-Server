@@ -16,7 +16,6 @@ export async function sendEmailShopping(emailBuyer,usernameBuyer,nameProducts){
     }) 
 }
 export async function sendClaimMail(message,subject,email){
-    //console.log({msg,service,email}) sender
     await transportator.sendMail({
         from: email,
         to: 'hardwarehotsales@gmail.com',

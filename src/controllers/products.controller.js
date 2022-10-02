@@ -8,11 +8,9 @@ export const createProduct = async (req, res, next) => {
     try {
         const newProduct = new Product(req.body);
         if (req.files?.images) {
-            console.log(req.files)
             const result = await uploadImage(req.files.images.tempFilePath)
             newProduct.images = [...newProduct.images, result.url]
             await fs.unlink(req.files.images.tempFilePath)
-            console.log(result, "result")
         }
         const productSaved = await newProduct.save();
         res.status(201).json(productSaved);
