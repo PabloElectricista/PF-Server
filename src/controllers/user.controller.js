@@ -57,7 +57,7 @@ export const getUsers = async (req, res, next) => {
 export const getUser = async (req, res, next) => {
     try {
         const { id } = req.params
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate("shopping");
         return res.json(user);
     } catch (error) {
         return next(error)
@@ -76,9 +76,8 @@ export const getUserEmail = async (req, res, next) => {
 
 export const putUser = async (req, res, next) => {
     try {
-        const { email } = req.body;
-        const user = await User.findOneAndUpdate(
-            email,
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
             req.body,
             { new: true }
         )

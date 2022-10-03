@@ -13,6 +13,6 @@ router.get("/byId/:id", [verifyToken], getUser)
 
 router.post("/", createUser);
 
-router.put("/", [verifyUser], putUser)
+router.put("/:id", [verifyUser], putUser)
 
 export default router;
