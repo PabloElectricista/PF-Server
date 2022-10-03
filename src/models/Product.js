@@ -51,34 +51,30 @@ const productSchema = new Schema(
       type: Boolean,
       default: false,
     },
-    // reviews: [
-    //   {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "Review",
-    //     //default:[]
-    //   },
-    // ],
-    reviews: [reviewSchema],
-    numReviews: {
-      type: Number,
-      default: function () {
-        return this.reviews.length;
+    allReviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
       },
+    ],
+    //reviews: [reviewSchema],
+    numReviews: {
+      type: Number
     },
     rating: {
-      type: Number,
+      type: Number/*,
       default: function () {
         let result = 0;
-        if (this.reviews.length > 0) {
-          let aux = this.reviews.reduce(
+        if (this.allReviews.length > 0) {
+          let aux = this.allReviews.reduce(
             (acc, item) => item.rating + acc,
             0
           );
-          result = aux / this.reviews.length;
+          result = aux / this.allReviews.length;
         }
         console.log(result);
         return result;
-      },
+      },*/
     },
   },
   {

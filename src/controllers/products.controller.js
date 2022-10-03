@@ -143,66 +143,77 @@ export const updateProductById = async (req, res, next) => {
     return next(error);
   }
 };
+/*
+export const createProductReview = async (req, res, next) => {
+  const { rating, comment } = req.body;
+  const productId = req.params.id;
+  try {
+    const product = await Product.findById(productId).populate("allReviews");
+    if (product) {
+      const alReadyReviewed = product.allReviews.length>0?product.allReviews.find((x) => x.user.toString() === req.user._id.toString()):null;
+      if (alReadyReviewed) {
+        return res.status(400).send({ message: "Usted ya ha enviado un comentario sobre este producto." })
+      };
+      const review = new Review({
+        name: req.user.username,
+        rating: Number(rating),
+        comment,
+        user: req.user
+      });
+      console.log(`Llegué review ${review}`);
+      const reviewSaved = await review.save();
+      product.allReviews.push(reviewSaved);
+      await product.save((err)=>err?console.log(err):null);
+      console.log(`llegué product ${product}`);
+      res.status(200).json({message: "Review added"});
+    } else {
+      return res.status(404).json({"error":"Product not found"})
+    }
+  } catch (error) {
+    return next(error)
+  }
 
-// export const createProductReview = async (req, res, next) => {
-//   const { rating, comment } = req.body;
-//   const productId = req.params.id;
-//   try {
-//     const product = await Product.findById(productId).populate("all_reviews");
-//     if (product) {
-//       const alReadyReviewed = product.all_reviews.length>0?product.all_reviews.find((x) => x.user.toString() === req.user._id.toString()):null;
-//       if (alReadyReviewed) {
-//         return res.status(400).send({"error":"Product already reviewed"})
-//       };
-//       const review = new Review({
-//         name: req.user.username,
-//         rating: Number(rating),
-//         comment,
-//         user: req.user
-//       });
-//       console.log(`Llegué review ${review}`);
-//       const reviewSaved = await review.save();
-//       product.all_reviews.push(reviewSaved);
-//       await product.save((err)=>err?console.log(err):null);
-//       console.log(`llegué product ${product}`);
-//       res.status(200).json({message: "Review added"});
-//     } else {
-//       return res.status(404).json({"error":"Product not found"})
-//     }
-//   } catch (error) {
-//     return next(error)
-//   }
+}*/
 
-// }
 
 export const createProductReview = async (req, res, next) => {
-  const productId = req.params.id;
+  try{
+    const productId = req.params.id;
 
-  const product = await Product.findById(productId);
-  if (product) {
-    if (product.reviews.find((x) => x.name === req.user.username)) {
-      return res
+    const product = await Product.findById(productId).populate("allReviews");
+
+    if (product) {
+      if (product.allReviews.find((x) => x.user._id.toString() === req.user._id.toString())) {
+        return res
         .status(400)
         .send({ message: "Usted ya ha enviado un comentario sobre este producto." });
+      }
+
+      const review = new Review({
+        rating: Number(req.body.rating),
+        comment: req.body.comment,
+        name: req.user.username,
+        user: req.user
+      });
+      
+      const reviewSaved= await review.save()
+      product.allReviews.push(reviewSaved);
+      product.numReviews = product.allReviews.length;
+      product.rating =
+        product.allReviews.reduce((a, c) => c.rating + a, 0) /  product.allReviews.length;
+    
+      const updatedProduct = await product.save();
+      
+      res.status(201).send({
+        message: "Review Created",
+        review: updatedProduct.allReviews[updatedProduct.allReviews.length - 1],
+        numReviews: product.numReviews,
+        rating: product.rating,
+      });
+    } else {
+      return res.status(404).send({ message: "Product Not Found" });
     }
-    const review = {
-      rating: Number(req.body.rating),
-      comment: req.body.comment,
-      name: req.body.name,
-    };
-    product.reviews.push(review);
-    product.numReviews = product.reviews.length;
-    product.rating =
-      product.reviews.reduce((a, c) => c.rating + a, 0) /
-      product.reviews.length;
-    const updatedProduct = await product.save();
-    res.status(201).send({
-      message: "Review Created",
-      review: updatedProduct.reviews[updatedProduct.reviews.length - 1],
-      numReviews: product.numReviews,
-      rating: product.rating,
-    });
-  } else {
-    res.status(404).send({ message: "Product Not Found" });
+  }catch(error){
+    return next(error)
   }
 };
