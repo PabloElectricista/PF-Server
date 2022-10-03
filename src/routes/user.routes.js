@@ -7,12 +7,12 @@ const router = Router();
 
 router.get("/", [verifyToken], getUsers)
 
-router.get("/byEmail/:email", [verifyToken], getUserEmail)
+router.get("/byEmail/:email", [verifyUser], getUserEmail)
 
 router.get("/byId/:id", [verifyToken], getUser)
 
 router.post("/", createUser);
 
-router.put("/", [verifyUser], putUser)
+router.put("/:id", [verifyUser], putUser)
 
 export default router;
