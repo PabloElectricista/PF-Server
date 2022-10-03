@@ -67,7 +67,7 @@ export const getUser = async (req, res, next) => {
 export const getUserEmail = async (req, res, next) => {
     try {
         const { email } = req.params
-        const user = await User.find({ email: email })
+        const user = await User.findOne({ email })
         return res.json(user)
     } catch (error) {
         return next(error)
