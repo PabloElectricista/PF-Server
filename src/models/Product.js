@@ -19,6 +19,7 @@ const productSchema = new Schema(
       required: true,
       trim: true,
       unique: true,
+
     },
     colors: [{ type: String }],
     category: [{ type: String }],

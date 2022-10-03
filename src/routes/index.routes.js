@@ -17,9 +17,9 @@ router.use("/users", usersRoutes);
 
 router.use("/orders", orderRouter)
 
-router.use("/mail", nodemailerRoutes);
 
-// recupera el Paypal client id de .env --- 'sb' es de sandbox
+router.use("/mail",nodemailerRoutes)
+
 router.get('/keys/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
 });

@@ -44,7 +44,7 @@ export const createUser = async (req, res, next) => {
 export const getUsers = async (req, res, next) => {
     try {
         const {start}= req.query
-        const index = start * limit+1
+        const index = start * 20 +1
         const users = await User.find().skip(index).limit(20).populate("shopping");
         const count = await User.countDocuments();
         return res.json({users,count});
@@ -57,7 +57,7 @@ export const getUsers = async (req, res, next) => {
 export const getUser = async (req, res, next) => {
     try {
         const { id } = req.params
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate("shopping");
         return res.json(user);
     } catch (error) {
         return next(error)
@@ -67,7 +67,7 @@ export const getUser = async (req, res, next) => {
 export const getUserEmail = async (req, res, next) => {
     try {
         const { email } = req.params
-        const user = await User.find({ email: email })
+        const user = await User.findOne({ email })
         return res.json(user)
     } catch (error) {
         return next(error)
@@ -76,9 +76,8 @@ export const getUserEmail = async (req, res, next) => {
 
 export const putUser = async (req, res, next) => {
     try {
-        const { email } = req.body;
-        const user = await User.findOneAndUpdate(
-            email,
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
             req.body,
             { new: true }
         )

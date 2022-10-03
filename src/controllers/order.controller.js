@@ -17,10 +17,9 @@ export const postOrders = async (req,res,next)=>{
           user: userBuyer._id,
         });
         const orderSaved = await newOrder.save();
-        console.log(`orderSaved---->${orderSaved}`)
         userBuyer.shopping.push(orderSaved);
-        await userBuyer.save();
-        await emailShopping(orderSaved)
+        const savedUser=await userBuyer.save();
+        await emailShopping(orderSaved,savedUser)
         res.status(201).json({ message: "New Order Created", order:orderSaved });
     } catch (error) {
       return next(error)
@@ -43,9 +42,7 @@ export const getOrders = async(req,res,next)=>{
 export const putOrder= async (req,res,next)=>{
     try {
         const order = await Order.findById(req.params.id);
-        console.log('order: ', order);
         if (order) {
-          console.log("order: ", order);
           order.isPaid = true;
           order.paidAt = Date.now();
           order.paymentResult = {
@@ -55,10 +52,8 @@ export const putOrder= async (req,res,next)=>{
             email_address: req.body.email_address,
           };
           const updatedOrder = await order.save();
-          console.log('orden actualizada');
           res.status(200).json({ message: "Order Paid", order: updatedOrder });
         } else {
-          console.log("order: NOT FOUND");
           res.status(404).json({ message: "Order Not Found" });
         }
       } catch (error) {
@@ -69,9 +64,7 @@ export const putOrder= async (req,res,next)=>{
 export const orderByUser=async (req,res,next)=>{
     try{
         const {userId}=req.params;
-        console.log(req.user);
         const currentUser = await User.findById(userId).populate("shopping")
-        console.log(currentUser)
         if(!currentUser) res.status(500).json({error: "User not found"})
         return res.json(currentUser.shopping)
     }catch(error){

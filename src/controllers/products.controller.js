@@ -9,11 +9,9 @@ export const createProduct = async (req, res, next) => {
   try {
     const newProduct = new Product(req.body);
     if (req.files?.images) {
-      console.log(req.files);
       const result = await uploadImage(req.files.images.tempFilePath);
       newProduct.images = [...newProduct.images, result.url];
       await fs.unlink(req.files.images.tempFilePath);
-      console.log(result, "result");
     }
     const productSaved = await newProduct.save();
     res.status(201).json(productSaved);
@@ -179,6 +177,7 @@ export const updateProductById = async (req, res, next) => {
 
 export const createProductReview = async (req, res, next) => {
   const productId = req.params.id;
+
   const product = await Product.findById(productId);
   if (product) {
     if (product.reviews.find((x) => x.name === req.user.username)) {
@@ -186,7 +185,6 @@ export const createProductReview = async (req, res, next) => {
         .status(400)
         .send({ message: "Usted ya ha enviado un comentario sobre este producto." });
     }
-
     const review = {
       rating: Number(req.body.rating),
       comment: req.body.comment,
