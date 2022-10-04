@@ -26,7 +26,7 @@ export const getProductById = async (req, res, next) => {
     const categories = await Product.find({}, { select: "category" }).distinct(
       "category"
     );
-    let product = await Product.findById(productId);
+    let product = await Product.findById(productId).populate("allReviews");
 
     res.status(200).json({ product, categorieslist: categories });
   } catch (error) {
