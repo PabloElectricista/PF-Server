@@ -83,11 +83,11 @@ export const getProducts = async (req, res, next) => {
     if (order) [field, by] = order.split('/');
     const condition = await combinedFilters(conditionByQuery);
     condition.isDisabled = false
-    const index = parseInt(req.query.start) * 9
+    const index = parseInt(start) * (parseInt(limit) || 9)
     var count = await Product.countDocuments(condition)
     var products;
-    if (order) products = await Product.find(condition).sort({ [field]: by }).skip(index).limit(9);
-    else products = await Product.find(condition).skip(index).limit(limit || 9);
+    if (order) products = await Product.find(condition).sort({ [field]: by }).skip(index).limit(parseInt(limit) || 9);
+    else products = await Product.find(condition).skip(index).limit(parseInt(limit) || 9);
     const brand = await Product.find(condition, { select: "brand" }).distinct("brand");
     const categories = await Product.find(condition, { select: "category" }).distinct("category")
     const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
