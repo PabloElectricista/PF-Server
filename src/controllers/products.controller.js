@@ -4,7 +4,6 @@ import Review from "../models/Reviews.js";
 import { uploadImage } from "../utils/cloudinary.js";
 import fs from "fs-extra";
 
-
 export const createProduct = async (req, res, next) => {
   try {
     const newProduct = new Product(req.body);
@@ -50,66 +49,13 @@ function combinedFilters(conditions) {
   return conditionSearch;
 }
 
-/* async function valuesAllProps(){
-  const props={colors:[], brand:[],price:[]};
-  const currentProducts=await Product.find();
-  let min,max;
-  for(const current in props){
-    currentProducts.forEach(p =>{
-      if(current=="price"){
-        if(!min&&!max){
-          min=p[current];
-          max=p[current];
-        }else{
-          if(min>p[current]) min=p[current];
-          if(max<p[current]) max=p[current];
-        }
-        props[current]=[min,max]
-      }else {
-        props[current]=Array.isArray(p[current])?[...props[current], ...p[current]]:[...props[current],p[current]]
-      }
-    }
-  );
-    props[current]=props[current].filter((item,index)=>{
-      return props[current].indexOf(item) === index;
-    })
-  }  
-  return {...props,status:["New","Used"]};
-} */
-
 export const getProducts = async (req, res, next) => {
   try {
     const { start, order, limit, ...conditionByQuery } = req.query;
     var field, by;
     if (order) [field, by] = order.split("/");
     const condition = await combinedFilters(conditionByQuery);
-/*<<<<<<< HEAD
-    condition.isDisabled = false;
-    const index = parseInt(req.query.start) * 9;
-    var count = await Product.countDocuments(condition);
-    var products;
-    if (order)
-      products = await Product.find(condition)
-        .sort({ [field]: by })
-        .skip(index)
-        .limit(9);
-    else
-      products = await Product.find(condition)
-        .skip(index)
-        .limit(limit || 9);
-    const brand = await Product.find(condition, { select: "brand" }).distinct(
-      "brand"
-    );
-    const categories = await Product.find(condition, {
-      select: "category",
-    }).distinct("category");
-    const colors = await Product.find(condition, { select: "colors" }).distinct(
-      "colors"
-    );
-    const result = await Product.find(condition, { select: "price" }).distinct(
-      "price"
-    );
-=======*/
+
     condition.isDisabled = false
     const index = parseInt(start) * (parseInt(limit) || 9)
     var count = await Product.countDocuments(condition)
@@ -120,7 +66,6 @@ export const getProducts = async (req, res, next) => {
     const categories = await Product.find(condition, { select: "category" }).distinct("category")
     const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
     const result = await Product.find(condition, { select: "price" }).distinct("price");
-//>>>>>>> 378f48d1c39eaf91ed846b79d2da093cab76bc17
     const prices = result.sort((a, b) => a - b);
     const price = [prices[0], prices[prices.length - 1]];
     const status = await Product.find(condition, { select: "status" }).distinct(
@@ -156,38 +101,6 @@ export const updateProductById = async (req, res, next) => {
     return next(error);
   }
 };
-/*
-export const createProductReview = async (req, res, next) => {
-  const { rating, comment } = req.body;
-  const productId = req.params.id;
-  try {
-    const product = await Product.findById(productId).populate("allReviews");
-    if (product) {
-      const alReadyReviewed = product.allReviews.length>0?product.allReviews.find((x) => x.user.toString() === req.user._id.toString()):null;
-      if (alReadyReviewed) {
-        return res.status(400).send({ message: "Usted ya ha enviado un comentario sobre este producto." })
-      };
-      const review = new Review({
-        name: req.user.username,
-        rating: Number(rating),
-        comment,
-        user: req.user
-      });
-      console.log(`Llegué review ${review}`);
-      const reviewSaved = await review.save();
-      product.allReviews.push(reviewSaved);
-      await product.save((err)=>err?console.log(err):null);
-      console.log(`llegué product ${product}`);
-      res.status(200).json({message: "Review added"});
-    } else {
-      return res.status(404).json({"error":"Product not found"})
-    }
-  } catch (error) {
-    return next(error)
-  }
-
-}*/
-
 
 export const createProductReview = async (req, res, next) => {
   try{
