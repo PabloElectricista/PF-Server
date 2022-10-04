@@ -83,31 +83,16 @@ export const getProducts = async (req, res, next) => {
     var field, by;
     if (order) [field, by] = order.split("/");
     const condition = await combinedFilters(conditionByQuery);
-    condition.isDisabled = false;
-    const index = parseInt(req.query.start) * 9;
-    var count = await Product.countDocuments(condition);
+    condition.isDisabled = false
+    const index = parseInt(start) * (parseInt(limit) || 9)
+    var count = await Product.countDocuments(condition)
     var products;
-    if (order)
-      products = await Product.find(condition)
-        .sort({ [field]: by })
-        .skip(index)
-        .limit(9);
-    else
-      products = await Product.find(condition)
-        .skip(index)
-        .limit(limit || 9);
-    const brand = await Product.find(condition, { select: "brand" }).distinct(
-      "brand"
-    );
-    const categories = await Product.find(condition, {
-      select: "category",
-    }).distinct("category");
-    const colors = await Product.find(condition, { select: "colors" }).distinct(
-      "colors"
-    );
-    const result = await Product.find(condition, { select: "price" }).distinct(
-      "price"
-    );
+    if (order) products = await Product.find(condition).sort({ [field]: by }).skip(index).limit(parseInt(limit) || 9);
+    else products = await Product.find(condition).skip(index).limit(parseInt(limit) || 9);
+    const brand = await Product.find(condition, { select: "brand" }).distinct("brand");
+    const categories = await Product.find(condition, { select: "category" }).distinct("category")
+    const colors = await Product.find(condition, { select: "colors" }).distinct("colors");
+    const result = await Product.find(condition, { select: "price" }).distinct("price");
     const prices = result.sort((a, b) => a - b);
     const price = [prices[0], prices[prices.length - 1]];
     const status = await Product.find(condition, { select: "status" }).distinct(
