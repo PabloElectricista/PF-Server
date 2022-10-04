@@ -2,11 +2,6 @@ import { model, Schema } from "mongoose";
 
 const reviewSchema = new Schema(
     {
-        user: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
-            require: true
-        },
         name: {
             type: String,
             require: true
@@ -18,6 +13,11 @@ const reviewSchema = new Schema(
         rating: {
             type: Number,
             required: true
+        },        
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            require: true
         }
     },
     {
